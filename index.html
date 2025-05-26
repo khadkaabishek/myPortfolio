@@ -1,17 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Under Construction</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - Abishek Khadka</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome for social icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <div class="container">
-    <h1>Under Construction</h1>
-    <p>I am currently working on this website. Please check back soon!</p>
-   
+<body class="dark-theme">
+  <div class="main-container">
+    <header>
+      <button id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+      <h1>Abishek Khadka</h1>
+      <p>Aspiring Computer Engineer | Innovating with AI and Machine Learning</p>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#skills-education">Skills & Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="profile-image-container">
+        <img
+          src="./Assets/image.jpg"
+          alt="Abishek Khadka"
+        />
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="section-card">
+        <h2>About</h2>
+        <p>
+          I am a computer engineering student currently in my 4th semester at NCIT
+          College under Pokhara University. My hobbies include playing chess and
+          immersing myself in nature. I am deeply interested in artificial
+          intelligence and machine learning and aspire to contribute to
+          technological advancements with innovative techniques.
+        </p>
+      </section>
+
+      <section id="resume" class="section-card">
+        <h2>View My Resume</h2>
+        <p>You can download or view my resume by clicking the button below.</p>
+        <a
+          href="./Assets/updResume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="resume-btn"
+          >Download Resume <i class="fa-solid fa-file-arrow-down"></i
+        ></a>
+      </section>
+
+      <section id="skills-education" class="section-card">
+        <h2>Skills & Education</h2>
+        <p>Versatile developer skilled in programming, web development, cloud technologies, and soft skills.</p>
+
+        <div class="skills-education-container">
+          <div class="skills">
+            <h3>Technical Skills</h3>
+            <ul class="skills-list">
+              <li><strong>Programming Languages:</strong> C, C++, Python, JavaScript, Java</li>
+              <li><strong>Web Development:</strong> HTML, CSS, Tailwind, Bootstrap, Node.js, Express, React, MongoDB, MySQL</li>
+              <li><strong>Tools & Platforms:</strong> Git/GitHub, Docker, VS Code</li>
+              <li><strong>Cloud:</strong> AWS (EC2, S3, VPC, IAM)</li>
+            </ul>
+          </div>
+
+          <div class="education">
+
+            <h3>Education</h3>
+            <ul>
+              <li><strong>Schooling:</strong> 2077 | GPA: 3.60</li>
+              <li><strong>High School (+2):</strong> 2078 - 2080 | Kalika Manavgyan Secondary School | GPA: 3.62</li>
+              <li><strong>Bachelor of Engineering:</strong> 81 - Present | NCIT College (Pokhara University) | GPA: 4.0</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section-card">
+        <h2>Projects ... </h2>
+        <ul>
+          <!-- SmartFarming Project with Video -->
+          <li class="project-item video-project">
+            <!-- Banner image that toggles video -->
+            <section id="smartfarming-banner" class="banner-container" style="flex-shrink: 0;">
+              <!-- Clickable banner image with play button -->
+              <div class="banner-image" id="bannerImage" tabindex="0" role="button" aria-label="Play SmartFarming Video">
+                <img src="./Project_Assets/smartfarmThumbnail.jpeg" alt="SmartFarming Project Thumbnail" />
+                <div class="play-button" aria-hidden="true">&#9658;</div>
+              </div>
+          
+              <!-- Hidden video wrapper with embedded YouTube iframe -->
+              <div class="video-wrapper" id="videoWrapper" hidden>
+                <button class="close-video" id="closeVideo" aria-label="Close Video">&times;</button>
+                <iframe
+                  id="smartfarmingVideo"
+                  src="./Project_Assets/smartfarm.mp4"
+                  frameborder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  title="SmartFarming Project Video"
+                ></iframe>
+              </div>
+            </section>
+          
+            <!-- Project information -->
+            <div class="project-info">
+              <h3>SmartFarming</h3>
+              <p>
+                IoT-based smart farming system with sensor data, backend (PHP + MySQL), crop recommendation with ML, and SMS alerts. Presented in hackathons to raise awareness for tech in agriculture.
+              </p>
+              <a href="https://shorturl.at/Tz0Bv" target="_blank" rel="noopener noreferrer">Project Link</a>
+            </div>
+          </li>
+          
+
+          <!-- Other projects with images -->
+          <li class="project-item">
+            <img
+              src="./Project_Assets/blogger.png"
+              alt="Blogger Project"
+              class="project-image"
+            />
+            <div class="project-info">
+              <h3>Blogger</h3>
+              <p>
+                Full-stack MERN blogging platform where users can create, edit, and
+                manage posts. Completed as a hands-on learning project.
+              </p>
+              <a
+                href="https://shorturl.at/AuBJJ"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Project Link</a
+              >
+            </div>
+          </li>
+
+          <!-- <li class="project-item">
+            <img
+              src="images/banking-thumbnail.jpg"
+              alt="Banking Project"
+              class="project-image"
+            />
+            <div class="project-info">
+              <h3>Banking</h3>
+              <p>
+                Full-stack banking app with React frontend and PHP-MySQL backend.
+                Successfully developed and submitted as a college project (DBMS
+                focus).
+              </p>
+              <a
+                href="https://shorturl.at/EPxV4"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Project Link</a
+              >
+            </div>
+          </li> -->
+
+          <li class="project-item">
+            <img
+              src="./Project_Assets/manoratha.jpeg"
+              alt="Manoratha Project"
+              class="project-image"
+            />
+            <div class="project-info">
+              <h3>Manoratha</h3>
+              <p>
+                Mental health platform for Nepalese youth, featuring psychiatrist
+                chat, AI emotion detection, forums, and more. Recognized for social
+                impact at OrbitHacks 2024.
+              </p>
+              <a
+                href="https://shorturl.at/L3Arf"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Project Link</a
+              >
+            </div>
+          </li>
+
+          <li class="project-item">
+            <img
+              src="./Project_Assets/ishackathon.jpeg"
+              alt="Jobxa.com Project"
+              class="project-image"
+            />
+            <div class="project-info">
+              <h3>Jobxa.com</h3>
+              <p>
+                Student job/internship portal to connect youth with tech
+                opportunities. Built during KUSOM Hackathon as the first hackathon
+                project.
+              </p>
+              <a
+                href="https://github.com/adhikari-arpan/KUSOM-Hackathon"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Project Link</a
+              >
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="contact" class="section-card">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:abishekkhadka36@gmail.com">abishekkhadka36@gmail.com</a></p>
+        <p>Phone: +977 9867294332</p>
+        <p>Address:
+          <address>
+            Kathmandu, Nepal
+          </address>
+        </p>
+        <p>Social Links:</p>
+       
+        <ul class="social-links">
+          <li>
+            <a
+              href="https://www.facebook.com/ABISHEK.KHADKA.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              ><i class="fab fa-facebook-square"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/abishekkhadkaa"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/khadkaabishek"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/abishek_khadka73/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+
+        <form id="contact-form" class="contact-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="from_name" required />
+          
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="from_email" required />
+          
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+          
+          <button type="submit" id="submit-btn">Send</button>
+          
+          <div id="status-message" class="status-message" style="display: none;"></div>
+      </form>
+      </section>
+    </main>
   </div>
 
+  <footer>
+    <p>&copy; 2025 Abishek Khadka. All rights reserved.</p>
+  </footer>
+
+  <script src = "./config.js"></script>
+  <script src="./src/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        // Initialize EmailJS with your Public Key
+        emailjs.init(EMAIL_CONFIG.publicKey); // Replace with your actual public key
+        
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const statusMessage = document.getElementById('status-message');
+            
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            statusMessage.style.display = 'none';
+            
+            // Send email using EmailJS
+            emailjs.sendForm(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, this)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    statusMessage.className = 'status-message success';
+                    statusMessage.textContent = 'Message sent successfully! Thank you for contacting me.';
+                    statusMessage.style.display = 'block';
+                    
+                    // Reset form
+                    document.getElementById('contact-form').reset();
+                    
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Show error message
+                    statusMessage.className = 'status-message error';
+                    statusMessage.textContent = 'Failed to send message. Please try again or contact me directly.';
+                    statusMessage.style.display = 'block';
+                })
+                .finally(function() {
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send';
+                });
+        });
+    </script>
 </body>
 </html>
