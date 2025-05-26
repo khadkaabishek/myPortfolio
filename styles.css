@@ -567,23 +567,35 @@ html {
     }
   }
   /* Container or parent element should have this */
-.animated-text {
-  font-weight: 600;
-  font-size: 1.2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  min-height: 1.4em; /* reserve space */
-  white-space: nowrap;
-  border-right: 3px solid #666;
-  overflow: hidden;
-  width: fit-content;
-  animation: blink-caret 0.75s step-end infinite;
-  transition: color 0.5s ease;
-  margin: 0 auto; /* centers horizontally */
-  text-align: center;
-  display: block;
-}
+  .animated-text {
+    font-weight: 600;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 300px;           /* fixed width to prevent layout shift */
+    height: 1.4em;          /* fixed height */
+    line-height: 1.4em;
+    box-sizing: border-box;
+    margin: 0 auto;         /* center horizontally */
+    text-align: center;
+    color: #000;            /* default text color, can be overridden inline */
+    position: relative;     /* for ::after positioning */
+  }
+  
+  .animated-text::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background-color: #666;
+    margin-left: 2px;
+    animation: blink-caret 0.75s step-end infinite;
+    vertical-align: bottom;
+    position: relative;
+    top: 2px; /* adjust vertical alignment if needed */
+  }
 
-/* Optional: center vertically if parent has height */
 .main-container header {
   display: flex;
   flex-direction: column;
@@ -594,8 +606,12 @@ html {
 
 /* Blinking cursor */
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #666; }
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 600px) {
