@@ -56,3 +56,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const phrases = [
+  { text: "Computer Engineering Student", color: "#31b7c2" },
+  { text: "Web Developer", color: "#6c63ff" },
+  { text: "Tech Enthusiast", color: "#ed1c24" },
+];
+
+const typingSpeed = 100; // ms per character
+const pauseBetween = 1500; // ms pause after phrase typed
+
+const animatedText = document.getElementById("animated-text");
+
+let phraseIndex = 0;
+let charIndex = 0;
+
+function typePhrase() {
+  const currentPhrase = phrases[phraseIndex];
+  animatedText.style.color = currentPhrase.color;
+
+  if (charIndex < currentPhrase.text.length) {
+    animatedText.textContent += currentPhrase.text.charAt(charIndex);
+    charIndex++;
+    setTimeout(typePhrase, typingSpeed);
+  } else {
+    setTimeout(() => {
+      erasePhrase();
+    }, pauseBetween);
+  }
+}
+
+function erasePhrase() {
+  if (charIndex > 0) {
+    animatedText.textContent = animatedText.textContent.slice(0, -1);
+    charIndex--;
+    setTimeout(erasePhrase, typingSpeed / 2);
+  } else {
+    phraseIndex = (phraseIndex + 1) % phrases.length; // loop back to first phrase
+    setTimeout(typePhrase, typingSpeed);
+  }
+}
+
+// Start the animation
+typePhrase();
