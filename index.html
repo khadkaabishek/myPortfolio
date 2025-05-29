@@ -241,7 +241,7 @@
           const submitBtn = document.getElementById('submit-btn');
           const statusMessage = document.getElementById('status-message');
           submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending...';
+          submitBtn.textContent = 'U cant send message';
           statusMessage.style.display = 'none';
           emailjs.sendForm(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, form)
             .then(function(response) {
