@@ -1,5 +1,5 @@
 const EMAIL_CONFIG = {
-  publicKey: "l6dY-aojLIesE7any",
-  serviceId: "service_fy61ik4",
+  publicKey: "q_5jUEeH6Y2MU51hP",
+  serviceId: "service_fy61ik43",
   templateId: "template_mqjgnhj",
 };
