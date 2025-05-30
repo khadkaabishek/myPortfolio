@@ -244,7 +244,7 @@
           submitBtn.disabled = true;
           submitBtn.textContent = 'Sending..';
           statusMessage.style.display = 'none';
-          emailjs.sendForm(service_6vop44s, EMAIL_CONFIG.templateId, form,EMAIL_CONFIG.publicKey)
+          emailjs.sendForm("service_6vop44s", EMAIL_CONFIG.templateId, form,EMAIL_CONFIG.publicKey)
             .then(function(response) {
               statusMessage.className = 'status-message success';
               statusMessage.textContent = 'Message sent successfully! Thank you for contacting me.';
