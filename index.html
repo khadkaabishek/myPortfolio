@@ -253,6 +253,7 @@
             }, function(error) {
               statusMessage.className = 'status-message error';
               statusMessage.textContent = 'Failed to send message. Please try again or contact me directly.';
+              console.log(error);
               statusMessage.style.display = 'block';
             })
             .finally(function() {
