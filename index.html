@@ -236,14 +236,15 @@
       // Contact Form Handler
       const form = document.getElementById('contact-form');
       if (form) {
+        // console.log(EMAIL_CONFIG);
         form.addEventListener('submit', function(event) {
           event.preventDefault();
           const submitBtn = document.getElementById('submit-btn');
           const statusMessage = document.getElementById('status-message');
           submitBtn.disabled = true;
-          submitBtn.textContent = 'U cant send message';
+          submitBtn.textContent = 'Sending..';
           statusMessage.style.display = 'none';
-          emailjs.sendForm(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, form)
+          emailjs.sendForm(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, form,EMAIL_CONFIG.publicKey)
             .then(function(response) {
               statusMessage.className = 'status-message success';
               statusMessage.textContent = 'Message sent successfully! Thank you for contacting me.';
