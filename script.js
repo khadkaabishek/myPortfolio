@@ -201,7 +201,7 @@ if (securePopup) {
         form.querySelector("#popupPassword")?.value;
       const SALT = "£714!";
       const HASHED_PASSWORD =
-        "4d8e91b9236e7391a2dde1102c696692707e44506cdbed41e1c7a78cd291eaf6";
+        "c548c4f7949c4ccc47060d8f8b7cde915f2f96130af00e8de54df095e5cc9d8a";
       const inputHash = sha256(password + SALT);
 
       if (username === "Abishek" && inputHash === HASHED_PASSWORD) {
