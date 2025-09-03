@@ -1,11 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Abishek Khadka, a Computer Engineering student and Full Stack Developer." />
+  <meta name="keywords" content="Abishek Khadka, Computer Engineering, Portfolio, Full Stack Developer, Nepal, AI, ML, IoT" />
+  <meta name="author" content="Abishek Khadka" />
+  <link rel="icon" type="image/png" href="./Assets/letter-a.png" />
+  <title>Abishek Khadka | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <style type="text/css">@font-face {font-family:Poppins;font-style:normal;font-weight:400;src:url(/cf-fonts/s/poppins/5.0.11/devanagari/400/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+25CC,U+A830-A839,U+A8E0-A8FF;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:400;src:url(/cf-fonts/s/poppins/5.0.11/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:400;src:url(/cf-fonts/s/poppins/5.0.11/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:600;src:url(/cf-fonts/s/poppins/5.0.11/latin/600/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:600;src:url(/cf-fonts/s/poppins/5.0.11/devanagari/600/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+25CC,U+A830-A839,U+A8E0-A8FF;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:600;src:url(/cf-fonts/s/poppins/5.0.11/latin-ext/600/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:700;src:url(/cf-fonts/s/poppins/5.0.11/latin-ext/700/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:700;src:url(/cf-fonts/s/poppins/5.0.11/devanagari/700/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+25CC,U+A830-A839,U+A8E0-A8FF;font-display:swap;}@font-face {font-family:Poppins;font-style:normal;font-weight:700;src:url(/cf-fonts/s/poppins/5.0.11/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- Devicon for tech icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+  <link rel="stylesheet" href="./style.css" />
 </head>
-<body>
-  <h1>  See You soon yahh ^_^ </h1>
+<body class="light-mode">
+  <div class="mobile-header">
+    <button id="themeToggle" class="theme-toggle"><i class="fas fa-sun"></i></button>
+    <div id="mobileMenu" class="mobile-menu">
+      <div class="hamburger"><i class="fas fa-bars"></i></div>
+      <ul class="nav-list-mobile">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" id="enterAbishekBtnMobile" class="nav-link"><i class="fas fa-lock"></i> Only Abishek</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="hero-section">
+    <div class="hero-left">
+      <div class="profile-image-container">
+        <img src="./Assets/image.jpg" alt="Abishek Khadka" class="profile-img" />
+      </div>
+      <div id="animated-text" class="typing-animation"></div>
+    </div>
+    <div class="hero-right">
+      <div class="button-group">
+        <a href="./Assets/updResume.pdf" target="_blank" rel="noopener noreferrer" class="action-btn download-btn">Download CV <i class="fa-solid fa-download"></i></a>
+        <a href="mailto:abishekkhadka36@gmail.com" class="action-btn hire-btn">Hire Me <i class="fas fa-envelope"></i></a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/ABISHEK.KHADKA.0/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/in/abishekkhadkaa" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/khadkaabishek" target="_blank" aria-label="GitHub"><i class="fab fa-github-square"></i></a>
+        <a href="https://www.instagram.com/abishek_khadka73/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div id="scroll-effect" class="scroll-effect">Swipe to Explore...</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Left Section (Profile & Navbar) -->
+    <aside class="left-section">
+      <div class="upper-section">
+        <div class="profile-image-container">
+          <img src="./Assets/image.jpg" alt="Abishek Khadka" class="profile-img" />
+          <div id="animated-text-mobile" class="typing-animation"></div>
+          <div class="button-group">
+            <a href="./Assets/updResume.pdf" target="_blank" rel="noopener noreferrer" class="action-btn download-btn">Download CV <i class="fa-solid fa-download"></i></a>
+            <a href="mailto:abishekkhadka36@gmail.com" class="action-btn hire-btn">Hire Me <i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <nav class="navbar">
+          <ul class="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" id="enterAbishekBtn" class="nav-link"><i class="fas fa-lock"></i> Only Abishek</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="lower-section">
+        <div class="social-links">
+          <a href="https://www.facebook.com/ABISHEK.KHADKA.0/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://www.linkedin.com/in/abishekkhadkaa" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/khadkaabishek" target="_blank" aria-label="GitHub"><i class="fab fa-github-square"></i></a>
+          <a href="https://www.instagram.com/abishek_khadka73/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> abishekkhadka36@gmail.com</p>
+          <p><i class="fas fa-phone"></i> +977 9867294332</p>
+          <p><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</p>
+        </div>
+      </div>
+      <button id="themeToggle_desktop" class="theme-toggle"><i class="fas fa-sun"></i></button>
+    </aside>
+
+    <!-- Middle Section (Information) -->
+    <main class="middle-section">
+      <section id="about" class="info-section">
+        <h2>About Me</h2>
+        <p>Hello 👋! I'm Abishek, a 4th-semester Computer Engineering student at NCIT College, Pokhara University. With a keen interest in AI, ML, and IoT, I thrive on solving real-world problems through technology. Beyond coding, I enjoy chess, nature walks, and exploring innovative tech solutions.</p>
+        <p>My journey involves hands-on projects and hackathons, where I've honed skills in full-stack development and cloud technologies. I'm passionate about creating impactful solutions and contributing to the tech community.</p>
+      </section>
+
+      <section id="skills" class="info-section">
+        <h2>What My Programming Skills Included?</h2>
+        <p>A blend of logical reasoning, algorithmic thinking, and the ability to design and implement efficient, scalable, and maintainable code to solve real-world problems.</p>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="skills">Skills</button>
+          <button class="tab-btn" data-tab="tools">Tools</button>
+        </div>
+        <div id="skills-tab" class="tab-content active">
+          <div class="icons-grid">
+            <div class="icon-item"><i class="devicon-c-plain"></i><span>C</span></div>
+            <div class="icon-item"><i class="devicon-cplusplus-plain"></i><span>C++</span></div>
+            <div class="icon-item"><i class="devicon-python-plain"></i><span>Python</span></div>
+            <div class="icon-item"><i class="devicon-javascript-plain"></i><span>JavaScript</span></div>
+            <div class="icon-item"><i class="devicon-java-plain"></i><span>Java</span></div>
+            <div class="icon-item"><i class="devicon-html5-plain"></i><span>HTML5</span></div>
+            <div class="icon-item"><i class="devicon-css3-plain"></i><span>CSS3</span></div>
+            <div class="icon-item"><i class="devicon-tailwindcss-plain"></i><span>Tailwind</span></div>
+            <div class="icon-item"><i class="devicon-bootstrap-plain"></i><span>Bootstrap</span></div>
+            <div class="icon-item"><i class="devicon-nodejs-plain"></i><span>Node.js</span></div>
+            <div class="icon-item"><i class="devicon-express-original"></i><span>Express</span></div>
+            <div class="icon-item"><i class="devicon-react-original"></i><span>React</span></div>
+            <div class="icon-item"><i class="devicon-mongodb-plain"></i><span>MongoDB</span></div>
+            <div class="icon-item"><i class="devicon-mysql-plain"></i><span>MySQL</span></div>
+          </div>
+        </div>
+        <div id="tools-tab" class="tab-content">
+          <div class="icons-grid">
+            <div class="icon-item"><i class="devicon-git-plain"></i><span>Git</span></div>
+            <div class="icon-item"><i class="devicon-github-original"></i><span>GitHub</span></div>
+            <div class="icon-item"><i class="devicon-docker-plain"></i><span>Docker</span></div>
+            <div class="icon-item"><i class="devicon-vscode-plain"></i><span>VS Code</span></div>
+            <div class="icon-item"><i class="devicon-amazonwebservices-original"></i><span>AWS</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="info-section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <img src="./Project_Assets/smartfarmThumbnail.jpeg" alt="SmartFarming Project" class="project-image">
+            <div class="project-overlay">
+              <h3>SmartFarming</h3>
+              <a href="https://shorturl.at/Tz0Bv" target="_blank" class="view-btn">View</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <img src="./Project_Assets/blogger.png" alt="Blogger Project" class="project-image">
+            <div class="project-overlay">
+              <h3>Blogger</h3>
+              <a href="https://github.com/khadkaabishek/Blogger_Project" target="_blank" class="view-btn">View</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <img src="./Project_Assets/E_cart.png" alt="Blogger Project" class="project-image">
+            <div class="project-overlay">
+              <h3>E_Cart</h3>
+              <a href="https://github.com/khadkaabishek/Blogger_Project" target="_blank" class="view-btn">View</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <img src="./Project_Assets/manoratha.png" alt="Blogger Project" class="project-image">
+            <div class="project-overlay">
+              <h3>Manoratha</h3>
+              <a href="https://github.com/khadkaabishek/OrbitHacks2024_Iterators" target="_blank" class="view-btn">View</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="info-section">
+        <h2>Contact Me</h2>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required />
+          </div>
+          <div class="form-group">
+            <label for="message"><i class="fas fa-comment"></i> Message</label>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <div id="form-status" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
+        </form>
+      </section>
+      <footer class="copyright">
+        <p>&copy; 2025 Abishek Khadka. All rights reserved. | Last Updated: September 03, 2025</p>
+      </footer>
+      <button id="scrollTopBtn" class="scroll-top-btn"><i class="fas fa-arrow-up"></i></button>
+    </main>
+
+    <!-- Right Section (Secure Area) -->
+    <aside class="right-section">
+      <div id="defaultImage" class="default-image">
+        <!-- Blank for now -->
+      </div>
+      <form id="secureForm" class="secure-form" style="display: none;">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="secureContent" class="secure-content" style="display: none;">
+        <p>Secure area for Abishek's files.</p>
+        <img src="./only-me-image.jpg" alt="Only Me Image" />
+      </div>
+    </aside>
+  </div>
+
+  <div id="securePopup" class="secure-popup" style="display: none;">
+    <div class="popup-content">
+      <form id="securePopupForm">
+        <input type="text" id="popupUsername" placeholder="Username" required />
+        <input type="password" id="popupPassword" placeholder="Password" required />
+        <button id="submit-btn" type="submit">Submit</button>
+      </form>
+     <p id="status-message"></p>
+      <span id="popupClose" class="close-btn">&times;</span>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="./script.js"></script>
+
+  <script>
+    // <![CDATA[  <-- For SVG support
+    if ('WebSocket' in window) {
+      (function () {
+        function refreshCSS() {
+          var sheets = [].slice.call(document.getElementsByTagName("link"));
+          var head = document.getElementsByTagName("head")[0];
+          for (var i = 0; i < sheets.length; ++i) {
+            var elem = sheets[i];
+            var parent = elem.parentElement || head;
+            parent.removeChild(elem);
+            var rel = elem.rel;
+            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+              var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+              elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+            }
+            parent.appendChild(elem);
+          }
+        }
+        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+        var address = protocol + window.location.host + window.location.pathname + '/ws';
+        var socket = new WebSocket(address);
+        socket.onmessage = function (msg) {
+          if (msg.data == 'reload') window.location.reload();
+          else if (msg.data == 'refreshcss') refreshCSS();
+        };
+        if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+          console.log('Live reload enabled.');
+          sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+        }
+      })();
+    }
+    else {
+      console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+    }
+    // ]]>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
+
+  <!-- EmailJS for contact form -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    (function() {
+      emailjs.init("q_5jUEeH6Y2MU51hP"); // Replace with your actual EmailJS public key
+    })();
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      const contactForm = document.getElementById('contactForm');
+      const formStatus = document.getElementById('form-status');
+      
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+       
+          const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+          };
+  
+          const submitBtn = contactForm.querySelector('.submit-btn');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+          formStatus.style.display = 'none';
+          
+     
+          emailjs.send('service_wsc4bny', 'template_mqjgnhj', formData)
+            .then(function(response) {
+     
+              formStatus.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+              formStatus.style.backgroundColor = '#d4edda';
+              formStatus.style.color = '#155724';
+              formStatus.style.border = '1px solid #c3e6cb';
+              formStatus.style.display = 'block';
+              
+
+              contactForm.reset();
+              
+
+              setTimeout(() => {
+                formStatus.style.display = 'none';
+              }, 5000);
+            }, function(error) {
+   
+              formStatus.textContent = 'Failed to send message. Please try again or email me directly at abishekkhadka36@gmail.com';
+              formStatus.style.backgroundColor = '#f8d7da';
+              formStatus.style.color = '#721c24';
+              formStatus.style.border = '1px solid #f5c6cb';
+              formStatus.style.display = 'block';
+              console.error('EmailJS Error:', error);
+            })
+            .finally(() => {
+ 
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
