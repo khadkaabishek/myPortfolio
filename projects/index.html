@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projects by Abishek Khadka — AI, IoT, robotics and full-stack builds." />
+  <title>Projects | Abishek Khadka</title>
+  <link rel="icon" type="image/png" href="../Assets/letter-a.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./projects.css" />
+  <!-- NOTE: intentionally no ad script here — this is the main showcase page and stays ad-free. -->
+</head>
+<body>
+  <div class="projects-topbar">
+    <a href="../index.html" class="projects-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="topbar-actions">
+      <a href="../index.html#contact" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+      <button id="themeToggleProjects" class="theme-toggle-projects"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="showcase-hero">
+    <h1>Projects</h1>
+    <p>A collection of things I've built — spanning computer vision, embedded robotics, full-stack platforms, and web development. Click any project for the full write-up, GitHub link, and a quick demo.</p>
+  </div>
+
+  <div id="showcaseGrid" class="showcase-grid"></div>
+
+  <script src="./projects-data.js"></script>
+  <script>
+    const grid = document.getElementById("showcaseGrid");
+    grid.innerHTML = PROJECTS.map(p => `
+      <a class="showcase-card" href="./project.html?p=${encodeURIComponent(p.id)}">
+        <div class="thumb-wrap"><img src="${p.thumbnail}" alt="${p.title}" loading="lazy" /></div>
+        <div class="card-body">
+          <h3>${p.title}</h3>
+          <p>${p.tagline}</p>
+          <div class="card-tags">${p.tech.slice(0,3).map(t => `<span class="tag">${t}</span>`).join("")}</div>
+          <div class="card-cta">View details &amp; demo <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </a>
+    `).join("");
+
+    // Theme toggle (persisted, synced with dark-mode used on main site)
+    const toggle = document.getElementById("themeToggleProjects");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

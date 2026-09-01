@@ -1,0 +1,18 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="260" fill="#141a24"/>
+  <rect x="30" y="35" width="340" height="190" rx="10" fill="#1d2733" stroke="#6c63ff" stroke-width="2"/>
+  <rect x="30" y="35" width="340" height="26" rx="10" fill="#232f3e"/>
+  <circle cx="48" cy="48" r="5" fill="#ed1c24"/>
+  <circle cx="64" cy="48" r="5" fill="#f4a261"/>
+  <circle cx="80" cy="48" r="5" fill="#39d98a"/>
+  <rect x="140" y="41" width="180" height="14" rx="7" fill="#0f1115"/>
+  <text x="148" y="52" font-family="monospace" font-size="9" fill="#7fdcff">citc.ncit.edu.np</text>
+  <!-- code brackets logo -->
+  <text x="150" y="130" font-family="monospace" font-size="52" fill="#6c63ff" font-weight="700">&lt;/&gt;</text>
+  <text x="130" y="165" font-family="Poppins, sans-serif" font-size="18" fill="#e8ecf1" font-weight="600">CITC</text>
+  <text x="90" y="188" font-family="Poppins, sans-serif" font-size="12" fill="#9aa4b2">Computer Innovation &amp; Tech Club</text>
+  <rect x="55" y="200" width="70" height="10" rx="5" fill="#31b7c2"/>
+  <rect x="140" y="200" width="70" height="10" rx="5" fill="#f4a261"/>
+  <rect x="225" y="200" width="70" height="10" rx="5" fill="#ed1c24"/>
+  <text x="20" y="25" font-family="Poppins, sans-serif" font-size="16" fill="#e8ecf1" font-weight="600" opacity="0"> </text>
+</svg>

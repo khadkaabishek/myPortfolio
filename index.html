@@ -19,8 +19,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
   <link rel="stylesheet" href="./style.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656"
-     crossorigin="anonymous"></script>
+  <!-- No ads on the homepage by design. Ads only appear on individual project detail pages under /projects/. -->
 </head>
 <body class="light-mode">
   <div class="mobile-header">
@@ -30,7 +29,7 @@
       <ul class="nav-list-mobile">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="./projects/index.html">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#" id="enterAbishekBtnMobile" class="nav-link"><i class="fas fa-lock"></i> Only Abishek</a></li>
       </ul>
@@ -75,7 +74,7 @@
           <ul class="nav-list">
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="./projects/index.html">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#" id="enterAbishekBtn" class="nav-link"><i class="fas fa-lock"></i> Only Abishek</a></li>
           </ul>
@@ -100,7 +99,7 @@
     <main class="middle-section">
       <section id="about" class="info-section">
         <h2>About Me</h2>
-        <p>Hello 👋! I'm Abishek, a 4th-semester Computer Engineering student at NCIT College, Pokhara University. With a keen interest in AI, ML, and IoT, I thrive on solving real-world problems through technology. Beyond coding, I enjoy chess, nature walks, and exploring innovative tech solutions.</p>
+        <p>Hello 👋! I'm Abishek, a 6th-semester Computer Engineering student at NCIT College, Pokhara University. With a keen interest in AI, ML, and IoT, I thrive on solving real-world problems through technology. Beyond coding, I enjoy chess, nature walks, and exploring innovative tech solutions.</p>
         <p>My journey involves hands-on projects and hackathons, where I've honed skills in full-stack development and cloud technologies. I'm passionate about creating impactful solutions and contributing to the tech community.</p>
       </section>
 
@@ -142,35 +141,15 @@
 
       <section id="projects" class="info-section">
         <h2>Projects</h2>
-        <div class="projects-grid">
-          <div class="project-card">
-            <img src="./Project_Assets/smartfarmThumbnail.jpeg" alt="SmartFarming Project" class="project-image">
-            <div class="project-overlay">
-              <h3>SmartFarming</h3>
-              <a href="https://shorturl.at/Tz0Bv" target="_blank" class="view-btn">View</a>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="./Project_Assets/blogger.png" alt="Blogger Project" class="project-image">
-            <div class="project-overlay">
-              <h3>Blogger</h3>
-              <a href="https://github.com/khadkaabishek/Blogger_Project" target="_blank" class="view-btn">View</a>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="./Project_Assets/E_cart.png" alt="Blogger Project" class="project-image">
-            <div class="project-overlay">
-              <h3>E_Cart</h3>
-              <a href="https://6a1d78b35a4da325ce3902a5--thunderous-macaron-fd4a56.netlify.app/" target="_blank" class="view-btn">View</a>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="./Project_Assets/manoratha.png" alt="Blogger Project" class="project-image">
-            <div class="project-overlay">
-              <h3>Manoratha</h3>
-              <a href="https://github.com/khadkaabishek/OrbitHacks2024_Iterators" target="_blank" class="view-btn">View</a>
-            </div>
-          </div>
+        <p>8 projects spanning computer vision, embedded robotics, civic-tech, and full-stack web development — from an ESP32-driven spider robot to a YOLOv8 traffic-violation detector.</p>
+        <div class="projects-slider-wrap">
+          <button class="slider-arrow prev-arrow" id="projPrev" aria-label="Previous project"><i class="fas fa-chevron-left"></i></button>
+          <div class="projects-slider" id="projectsSlider"><!-- filled by script.js from projects-data.js --></div>
+          <button class="slider-arrow next-arrow" id="projNext" aria-label="Next project"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="slider-dots" id="projDots"></div>
+        <div style="text-align:center; margin-top: 20px;">
+          <a href="./projects/index.html" class="action-btn download-btn" style="display:inline-flex;">View All Projects <i class="fas fa-arrow-right"></i></a>
         </div>
       </section>
 
@@ -229,6 +208,7 @@
   </div>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="./projects/projects-data.js"></script>
   <script src="./script.js"></script>
 
   <script>

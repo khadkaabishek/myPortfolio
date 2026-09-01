@@ -1,0 +1,33 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="260" fill="#0f1b2b"/>
+  <!-- government building -->
+  <g fill="#2c3e52">
+    <polygon points="230,60 330,60 280,25"/>
+    <rect x="230" y="60" width="100" height="12"/>
+    <rect x="240" y="75" width="10" height="60"/>
+    <rect x="258" y="75" width="10" height="60"/>
+    <rect x="276" y="75" width="10" height="60"/>
+    <rect x="294" y="75" width="10" height="60"/>
+    <rect x="312" y="75" width="10" height="60"/>
+    <rect x="225" y="135" width="110" height="12"/>
+  </g>
+  <!-- speech bubble from citizen -->
+  <g>
+    <rect x="40" y="70" width="150" height="80" rx="16" fill="#31b7c2"/>
+    <polygon points="70,150 70,175 100,150" fill="#31b7c2"/>
+    <text x="58" y="100" font-family="Poppins, sans-serif" font-size="14" fill="#0f1b2b" font-weight="600">Streetlight not</text>
+    <text x="58" y="120" font-family="Poppins, sans-serif" font-size="14" fill="#0f1b2b" font-weight="600">working near</text>
+    <text x="58" y="140" font-family="Poppins, sans-serif" font-size="14" fill="#0f1b2b" font-weight="600">Ward 4 school</text>
+  </g>
+  <!-- arrow -->
+  <path d="M195 110 L225 110" stroke="#f4a261" stroke-width="5" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#f4a261"/>
+    </marker>
+  </defs>
+  <!-- status tag -->
+  <rect x="225" y="150" width="110" height="26" rx="6" fill="#39d98a"/>
+  <text x="238" y="167" font-family="monospace" font-size="12" fill="#0f1b2b">IN PROGRESS</text>
+  <text x="20" y="30" font-family="Poppins, sans-serif" font-size="20" fill="#e8ecf1" font-weight="600">Janata Voice</text>
+</svg>

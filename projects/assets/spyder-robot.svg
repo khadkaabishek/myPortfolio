@@ -1,0 +1,36 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="260" fill="#101820"/>
+  <circle cx="200" cy="130" r="120" fill="#16202b"/>
+  <!-- legs -->
+  <g stroke="#31b7c2" stroke-width="6" fill="none" stroke-linecap="round">
+    <path d="M175 120 L110 90 L70 100"/>
+    <path d="M175 140 L100 140 L60 155"/>
+    <path d="M175 160 L110 190 L70 215"/>
+    <path d="M225 120 L290 90 L330 100"/>
+    <path d="M225 140 L300 140 L340 155"/>
+    <path d="M225 160 L290 190 L330 215"/>
+  </g>
+  <g fill="#31b7c2">
+    <circle cx="70" cy="100" r="6"/>
+    <circle cx="60" cy="155" r="6"/>
+    <circle cx="70" cy="215" r="6"/>
+    <circle cx="330" cy="100" r="6"/>
+    <circle cx="340" cy="155" r="6"/>
+    <circle cx="330" cy="215" r="6"/>
+  </g>
+  <!-- body -->
+  <ellipse cx="200" cy="140" rx="55" ry="38" fill="#22303c" stroke="#31b7c2" stroke-width="3"/>
+  <circle cx="183" cy="132" r="8" fill="#f4a261"/>
+  <circle cx="217" cy="132" r="8" fill="#f4a261"/>
+  <rect x="180" y="150" width="40" height="8" rx="4" fill="#0f1115"/>
+  <!-- esp32 chip label -->
+  <rect x="170" y="95" width="60" height="18" rx="3" fill="#0f1115" stroke="#6c63ff"/>
+  <text x="177" y="108" font-family="monospace" font-size="10" fill="#6c63ff">ESP32</text>
+  <!-- wifi -->
+  <g stroke="#e8b23a" stroke-width="3" fill="none">
+    <path d="M188 78 A18 18 0 0 1 212 78"/>
+    <path d="M194 86 A9 9 0 0 1 206 86"/>
+  </g>
+  <circle cx="200" cy="93" r="3" fill="#e8b23a"/>
+  <text x="20" y="30" font-family="Poppins, sans-serif" font-size="20" fill="#e8ecf1" font-weight="600">Spyder Robot — ESP32</text>
+</svg>

@@ -88,40 +88,42 @@ if (animatedText) {
   typePhraseMobile();
 }
 
-// Theme toggle
+// Theme toggle (persisted in localStorage so it stays in sync with /projects pages)
 const themeToggle = document.getElementById("themeToggle");
-
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    const isDarkMode = document.body.classList.contains("dark-mode");
-    themeToggle.innerHTML = isDarkMode
-      ? '<i class="fas fa-moon"></i>'
-      : '<i class="fas fa-sun"></i>';
-    themeToggle.style.transform = isDarkMode
-      ? "rotate(360deg)"
-      : "rotate(0deg)";
-    setTimeout(() => (themeToggle.style.transition = "transform 0.5s"), 0);
-  });
-}
-
 const themeToggle_desktop = document.getElementById("themeToggle_desktop");
 
+function setThemeIcons(isDarkMode) {
+  const iconHtml = isDarkMode
+    ? '<i class="fas fa-moon"></i>'
+    : '<i class="fas fa-sun"></i>';
+  if (themeToggle) themeToggle.innerHTML = iconHtml;
+  if (themeToggle_desktop) themeToggle_desktop.innerHTML = iconHtml;
+}
+
+function applyStoredTheme() {
+  const isDarkMode = localStorage.getItem("theme") === "dark";
+  document.body.classList.toggle("dark-mode", isDarkMode);
+  setThemeIcons(isDarkMode);
+}
+applyStoredTheme();
+
+function toggleTheme(sourceBtn) {
+  document.body.classList.toggle("dark-mode");
+  const isDarkMode = document.body.classList.contains("dark-mode");
+  localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  setThemeIcons(isDarkMode);
+  if (sourceBtn) {
+    sourceBtn.style.transform = isDarkMode ? "rotate(360deg)" : "rotate(0deg)";
+    setTimeout(() => (sourceBtn.style.transition = "transform 0.5s"), 0);
+  }
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => toggleTheme(themeToggle));
+}
+
 if (themeToggle_desktop) {
-  themeToggle_desktop.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    const isDarkMode = document.body.classList.contains("dark-mode");
-    themeToggle_desktop.innerHTML = isDarkMode
-      ? '<i class="fas fa-moon"></i>'
-      : '<i class="fas fa-sun"></i>';
-    themeToggle_desktop.style.transform = isDarkMode
-      ? "rotate(360deg)"
-      : "rotate(0deg)";
-    setTimeout(
-      () => (themeToggle_desktop.style.transition = "transform 0.5s"),
-      0
-    );
-  });
+  themeToggle_desktop.addEventListener("click", () => toggleTheme(themeToggle_desktop));
 }
 // Mobile Menu Toggle
 const hamburger = document.querySelector(".hamburger");
@@ -284,3 +286,67 @@ window.addEventListener("resize", () => {
     securePopup.style.display = "none";
   }
 });
+
+// ---------- Homepage Projects Slider ----------
+// Reads from projects/projects-data.js (PROJECTS array) so the homepage
+// preview always stays in sync with the full showcase at /projects.
+(function initProjectsSlider() {
+  const slider = document.getElementById("projectsSlider");
+  const dotsWrap = document.getElementById("projDots");
+  const prevBtn = document.getElementById("projPrev");
+  const nextBtn = document.getElementById("projNext");
+  if (!slider || typeof PROJECTS === "undefined") return;
+
+  slider.innerHTML = PROJECTS.map(
+    (p) => `
+    <a class="slide-card" href="./projects/project.html?p=${encodeURIComponent(p.id)}">
+      <div class="slide-thumb"><img src="./projects/${p.thumbnail}" alt="${p.title}" loading="lazy" /></div>
+      <div class="slide-info">
+        <h3>${p.title}</h3>
+        <p>${p.tagline}</p>
+        <span class="slide-cta">View Project <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>`
+  ).join("");
+
+  // Build dots
+  if (dotsWrap) {
+    dotsWrap.innerHTML = PROJECTS.map((_, i) => `<span data-index="${i}"></span>`).join("");
+  }
+  const dots = dotsWrap ? Array.from(dotsWrap.children) : [];
+  const cards = Array.from(slider.children);
+
+  function setActiveDot() {
+    if (!dots.length) return;
+    const scrollPos = slider.scrollLeft;
+    let closest = 0;
+    let closestDist = Infinity;
+    cards.forEach((card, i) => {
+      const dist = Math.abs(card.offsetLeft - scrollPos);
+      if (dist < closestDist) { closestDist = dist; closest = i; }
+    });
+    dots.forEach((d, i) => d.classList.toggle("active", i === closest));
+  }
+  setActiveDot();
+  slider.addEventListener("scroll", () => {
+    window.requestAnimationFrame(setActiveDot);
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const i = Number(dot.dataset.index);
+      if (cards[i]) {
+        slider.scrollTo({ left: cards[i].offsetLeft, behavior: "smooth" });
+      }
+    });
+  });
+
+  function scrollByCard(direction) {
+    const card = cards[0];
+    if (!card) return;
+    const cardWidth = card.getBoundingClientRect().width + 20; // gap
+    slider.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+  }
+  if (prevBtn) prevBtn.addEventListener("click", () => scrollByCard(-1));
+  if (nextBtn) nextBtn.addEventListener("click", () => scrollByCard(1));
+})();
