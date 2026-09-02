@@ -13,7 +13,10 @@
 //   tech          - array of tech/tool tags
 //   github        - link to the repo (⚠️ fill in the real ones marked TODO)
 //   liveUrl       - optional link to a live/hosted version
-//   samples       - array of { src, caption } for the samples/screenshots gallery
+//   sampleFolder  - subfolder under projects/samples/ containing this project's images
+//   samples       - array of { file, caption } — file must match a filename inside
+//                   projects/samples/<sampleFolder>/. Rendered as a carousel, in order.
+//                   See projects/samples/README.md for how to add more images.
 //   simulation    - id used by project.js to know which mini-demo to render
 //   simType       - "video" | "custom" (custom = interactive JS demo below)
 
@@ -34,8 +37,9 @@ const PROJECTS = [
     tech: ["IoT", "Sensors", "Dashboard", "Automation"],
     github: "https://github.com/khadkaabishek", // TODO: replace with the exact repo link
     liveUrl: "https://shorturl.at/Tz0Bv",
+    sampleFolder: "smartfarming",
     samples: [
-      { src: "../Project_Assets/smartfarmThumbnail.jpeg", caption: "Field monitoring dashboard" },
+      { file: "1.jpeg", caption: "Field monitoring dashboard" },
     ],
     simulation: "smartfarming",
     simType: "video",
@@ -56,7 +60,8 @@ const PROJECTS = [
     tech: ["Node.js", "Express", "MongoDB", "EJS/Views"],
     github: "https://github.com/khadkaabishek/Blogger_Project",
     liveUrl: "",
-    samples: [{ src: "../Project_Assets/blogger.png", caption: "Blog feed UI" }],
+    sampleFolder: "blogger",
+    samples: [{ file: "1.png", caption: "Blog feed UI" }],
     simulation: "blogger",
     simType: "custom",
   },
@@ -75,7 +80,8 @@ const PROJECTS = [
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/khadkaabishek", // TODO: replace with the exact repo link
     liveUrl: "https://6a1d78b35a4da325ce3902a5--thunderous-macaron-fd4a56.netlify.app/",
-    samples: [{ src: "../Project_Assets/E_cart.png", caption: "Storefront view" }],
+    sampleFolder: "ecart",
+    samples: [{ file: "1.png", caption: "Storefront view" }],
     simulation: "ecart",
     simType: "custom",
   },
@@ -94,9 +100,10 @@ const PROJECTS = [
     tech: ["PHP", "MySQL", "Node.js", "Socket.io", "face-api.js"],
     github: "https://github.com/khadkaabishek/OrbitHacks2024_Iterators",
     liveUrl: "",
+    sampleFolder: "manoratha",
     samples: [
-      { src: "../Project_Assets/manoratha.png", caption: "Project screenshot" },
-      { src: "../Project_Assets/manoratha_team.jpeg", caption: "Team Iterators at OrbitHacks 2024" },
+      { file: "1.png", caption: "Project screenshot" },
+      { file: "2.jpeg", caption: "Team Iterators at OrbitHacks 2024" },
     ],
     simulation: "manoratha",
     simType: "custom",
@@ -120,7 +127,8 @@ const PROJECTS = [
     tech: ["YOLOv8", "OpenCV", "PyTorch", "OCR (ANPR)", "React", "Node.js/Express"],
     github: "https://github.com/khadkaabishek/Automated-Two-Wheeler-Violation-Detection-and-E-Challan-System",
     liveUrl: "",
-    samples: [{ src: "assets/traffic-detection.svg", caption: "Illustrative detection overlay" }],
+    sampleFolder: "traffic-violation-detection",
+    samples: [{ file: "1.svg", caption: "Illustrative detection overlay" }],
     simulation: "traffic",
     simType: "custom",
   },
@@ -140,7 +148,8 @@ const PROJECTS = [
     tech: ["ESP32", "Servo Motors", "Ultrasonic Sensors", "Wi-Fi", "Embedded C++"],
     github: "https://github.com/khadkaabishek/Spider-",
     liveUrl: "",
-    samples: [{ src: "assets/spyder-robot.svg", caption: "Concept render" }],
+    sampleFolder: "spyder-robot",
+    samples: [{ file: "1.svg", caption: "Concept render" }],
     simulation: "spyder",
     simType: "custom",
   },
@@ -160,7 +169,8 @@ const PROJECTS = [
     tech: ["React", "TypeScript", "Node.js/Express", "MongoDB", "Leaflet"],
     github: "https://github.com/khadkaabishek/janata_voice",
     liveUrl: "",
-    samples: [{ src: "assets/janata-voice.svg", caption: "Concept illustration" }],
+    sampleFolder: "janata-voice",
+    samples: [{ file: "1.svg", caption: "Concept illustration" }],
     simulation: "janata",
     simType: "custom",
   },
@@ -180,7 +190,8 @@ const PROJECTS = [
     tech: ["Next.js 16", "React 19", "PostgreSQL", "Drizzle ORM", "Supabase", "Tailwind CSS"],
     github: "https://github.com/CITC-Club/citc-website",
     liveUrl: "http://citc.ncit.edu.np",
-    samples: [{ src: "assets/citc-website.svg", caption: "Club branding" }],
+    sampleFolder: "citc-website",
+    samples: [{ file: "1.svg", caption: "Club branding" }],
     simulation: "citc",
     simType: "custom",
   },

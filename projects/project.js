@@ -49,17 +49,7 @@ wrap.innerHTML = `
 
   <div class="detail-section">
     <h2>Samples</h2>
-    <div class="samples-grid">
-      ${project.samples
-        .map(
-          (s) => `
-        <div class="sample-item">
-          <div class="sample-img-wrap"><img src="${s.src}" alt="${s.caption}" loading="lazy" /></div>
-          <div class="sample-caption">${s.caption}</div>
-        </div>`
-        )
-        .join("")}
-    </div>
+    <div id="samplesCarousel"></div>
   </div>
 
   <!-- Ad slot #2 -->
@@ -293,3 +283,80 @@ if (simulations[project.simulation]) {
 } else {
   simBox.innerHTML = `<p class="sim-note">No demo available yet.</p>`;
 }
+
+// ---------- Samples carousel ----------
+// Reads project.samples (array of {file, caption}) and resolves each path
+// against projects/samples/<project.sampleFolder>/<file>.
+(function renderSamplesCarousel() {
+  const mount = document.getElementById("samplesCarousel");
+  if (!mount) return;
+  const images = (project.samples || []).map((s) => ({
+    src: `./samples/${project.sampleFolder}/${s.file}`,
+    caption: s.caption || "",
+  }));
+
+  if (images.length === 0) {
+    mount.innerHTML = `<p class="sim-note">No sample images yet — check back soon.</p>`;
+    return;
+  }
+
+  let current = 0;
+
+  mount.innerHTML = `
+    <div class="sample-carousel">
+      <div class="sample-main-wrap">
+        ${images.length > 1 ? `<button class="sample-arrow sample-arrow-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>` : ""}
+        <div class="sample-main-img-wrap">
+          <img id="sampleMainImg" src="${images[0].src}" alt="${images[0].caption}" />
+        </div>
+        ${images.length > 1 ? `<button class="sample-arrow sample-arrow-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>` : ""}
+      </div>
+      <div class="sample-caption-bar" id="sampleCaptionBar">${images[0].caption}</div>
+      ${
+        images.length > 1
+          ? `<div class="sample-thumbs" id="sampleThumbs">
+              ${images
+                .map(
+                  (img, i) => `<button class="sample-thumb ${i === 0 ? "active" : ""}" data-index="${i}">
+                    <img src="${img.src}" alt="${img.caption}" loading="lazy" />
+                  </button>`
+                )
+                .join("")}
+            </div>`
+          : ""
+      }
+    </div>`;
+
+  const mainImg = document.getElementById("sampleMainImg");
+  const captionBar = document.getElementById("sampleCaptionBar");
+  const thumbs = mount.querySelectorAll(".sample-thumb");
+  const prevBtn = mount.querySelector(".sample-arrow-prev");
+  const nextBtn = mount.querySelector(".sample-arrow-next");
+
+  function goTo(index) {
+    current = (index + images.length) % images.length;
+    mainImg.src = images[current].src;
+    mainImg.alt = images[current].caption;
+    captionBar.textContent = images[current].caption;
+    thumbs.forEach((t, i) => t.classList.toggle("active", i === current));
+  }
+
+  thumbs.forEach((t) => t.addEventListener("click", () => goTo(Number(t.dataset.index))));
+  if (prevBtn) prevBtn.addEventListener("click", () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener("click", () => goTo(current + 1));
+
+  // basic swipe support on the main image
+  let touchStartX = null;
+  const mainWrap = mount.querySelector(".sample-main-img-wrap");
+  mainWrap.addEventListener("touchstart", (e) => (touchStartX = e.touches[0].clientX), { passive: true });
+  mainWrap.addEventListener(
+    "touchend",
+    (e) => {
+      if (touchStartX === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+      touchStartX = null;
+    },
+    { passive: true }
+  );
+})();
