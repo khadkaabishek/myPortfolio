@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QR Code Generator | Abishek Khadka</title>
+<meta name="description" content="Generate a downloadable QR code from any URL or text, with adjustable size and colors. Runs entirely in your browser." />
+<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="../tools.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="tools-page">
+  <div class="content-topbar">
+    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="tool-shell">
+    <div class="tool-eyebrow">Utilities</div>
+    <h1>QR Code Generator</h1>
+    <p class="tool-dek">Turn any URL, text, or contact detail into a QR code. Adjust the size and colors, then download it as a PNG.</p>
+
+    <div class="privacy-note"><i class="fas fa-lock"></i> The QR code is generated locally in your browser — the text you enter is never sent anywhere.</div>
+
+    <div class="tool-panel">
+      <div class="form-row">
+        <label for="qrText">Text or URL</label>
+        <textarea id="qrText" placeholder="https://example.com or any text">https://www.abishek-khadka.com.np</textarea>
+      </div>
+
+      <div class="form-row-inline">
+        <div class="form-row">
+          <label for="qrSize">Size (px)</label>
+          <select id="qrSize">
+            <option value="200">200 × 200</option>
+            <option value="300" selected>300 × 300</option>
+            <option value="400">400 × 400</option>
+            <option value="600">600 × 600</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="fgColor">Foreground color</label>
+          <input type="color" id="fgColor" value="#000000" />
+        </div>
+        <div class="form-row">
+          <label for="bgColor">Background color</label>
+          <input type="color" id="bgColor" value="#ffffff" />
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="generateBtn"><i class="fas fa-qrcode"></i> Generate</button>
+        <a class="btn secondary" id="downloadBtn" style="display:none;" download="qrcode.png"><i class="fas fa-download"></i> Download PNG</a>
+      </div>
+
+      <div class="result-box" id="resultBox" style="display:none; text-align:center;">
+        <div id="qrCanvasHolder" style="display:inline-block;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qrText = document.getElementById('qrText');
+    const qrSize = document.getElementById('qrSize');
+    const fgColor = document.getElementById('fgColor');
+    const bgColor = document.getElementById('bgColor');
+    const generateBtn = document.getElementById('generateBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const resultBox = document.getElementById('resultBox');
+    const holder = document.getElementById('qrCanvasHolder');
+
+    let qrInstance = null;
+
+    generateBtn.addEventListener('click', () => {
+      const text = qrText.value.trim();
+      if (!text) return;
+
+      holder.innerHTML = '';
+      const size = parseInt(qrSize.value, 10);
+
+      qrInstance = new QRCode(holder, {
+        text: text,
+        width: size,
+        height: size,
+        colorDark: fgColor.value,
+        colorLight: bgColor.value,
+        correctLevel: QRCode.CorrectLevel.M
+      });
+
+      resultBox.style.display = 'block';
+
+      // qrcodejs renders async-ish via img/canvas; give it a tick then wire download
+      setTimeout(() => {
+        const img = holder.querySelector('img');
+        const canvasEl = holder.querySelector('canvas');
+        let dataUrl = null;
+        if (canvasEl) dataUrl = canvasEl.toDataURL('image/png');
+        else if (img) dataUrl = img.src;
+        if (dataUrl) {
+          downloadBtn.href = dataUrl;
+          downloadBtn.style.display = 'inline-flex';
+        }
+      }, 150);
+    });
+
+    // Generate one on load with the default value
+    window.addEventListener('load', () => generateBtn.click());
+
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Word &amp; Character Counter | Abishek Khadka</title>
+<meta name="description" content="Live word, character, sentence, and paragraph counts, plus estimated reading time. Runs entirely in your browser." />
+<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="../tools.css" />
+</head>
+<body class="tools-page">
+  <div class="content-topbar">
+    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="tool-shell">
+    <div class="tool-eyebrow">Writing Tools</div>
+    <h1>Word &amp; Character Counter</h1>
+    <p class="tool-dek">Type or paste text below to get a live count of words, characters, sentences, and paragraphs, plus an estimated reading time.</p>
+
+    <div class="privacy-note"><i class="fas fa-lock"></i> Your text is processed locally in your browser and never sent anywhere.</div>
+
+    <div class="tool-panel">
+      <div class="form-row">
+        <label for="textInput">Your text</label>
+        <textarea id="textInput" style="min-height:260px;" placeholder="Start typing or paste your text here…"></textarea>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box"><span class="num" id="wordCount">0</span><span class="label">Words</span></div>
+        <div class="stat-box"><span class="num" id="charCount">0</span><span class="label">Characters</span></div>
+        <div class="stat-box"><span class="num" id="charNoSpaceCount">0</span><span class="label">Chars (no spaces)</span></div>
+        <div class="stat-box"><span class="num" id="sentenceCount">0</span><span class="label">Sentences</span></div>
+        <div class="stat-box"><span class="num" id="paragraphCount">0</span><span class="label">Paragraphs</span></div>
+        <div class="stat-box"><span class="num" id="readingTime">0 min</span><span class="label">Reading time</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const textInput = document.getElementById('textInput');
+    const wordCount = document.getElementById('wordCount');
+    const charCount = document.getElementById('charCount');
+    const charNoSpaceCount = document.getElementById('charNoSpaceCount');
+    const sentenceCount = document.getElementById('sentenceCount');
+    const paragraphCount = document.getElementById('paragraphCount');
+    const readingTime = document.getElementById('readingTime');
+
+    const WORDS_PER_MINUTE = 200;
+
+    function update() {
+      const text = textInput.value;
+
+      const words = text.trim().length ? text.trim().split(/\s+/) : [];
+      wordCount.textContent = words.length;
+
+      charCount.textContent = text.length;
+      charNoSpaceCount.textContent = text.replace(/\s/g, '').length;
+
+      const sentences = text.trim().length ? text.trim().split(/[.!?]+(?:\s|$)/).filter(s => s.trim().length > 0) : [];
+      sentenceCount.textContent = sentences.length;
+
+      const paragraphs = text.trim().length ? text.split(/\n\s*\n/).filter(p => p.trim().length > 0) : [];
+      paragraphCount.textContent = paragraphs.length;
+
+      const minutes = words.length / WORDS_PER_MINUTE;
+      if (minutes < 1) {
+        readingTime.textContent = '< 1 min';
+      } else {
+        readingTime.textContent = Math.ceil(minutes) + ' min';
+      }
+    }
+
+    textInput.addEventListener('input', update);
+    update();
+
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

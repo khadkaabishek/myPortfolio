@@ -13,9 +13,9 @@ tabBtns.forEach((btn) => {
 
 // Typing Animation
 const phrases = [
-  { text: "Computer Engineering Student", color: "#31b7c2" },
-  { text: "Full Stack Web Developer", color: "#6c63ff" },
-  { text: "Tech Enthusiast", color: "#ed1c24" },
+  { text: "Computer Engineering Student", color: "#00E5FF" },
+  { text: "Full Stack Web Developer", color: "#7C5CFF" },
+  { text: "AI / ML / IoT Enthusiast", color: "#2DD4BF" },
 ];
 const typingSpeed = 100;
 const pauseBetween = 1500;

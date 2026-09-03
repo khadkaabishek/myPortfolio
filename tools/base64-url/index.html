@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Base64 / URL Encoder-Decoder | Abishek Khadka</title>
+<meta name="description" content="Encode or decode text as Base64 or a URL-safe string, in both directions, instantly in your browser." />
+<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="../tools.css" />
+</head>
+<body class="tools-page">
+  <div class="content-topbar">
+    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="tool-shell">
+    <div class="tool-eyebrow">Developer Tools</div>
+    <h1>Base64 / URL Encoder-Decoder</h1>
+    <p class="tool-dek">Encode or decode text as Base64, or apply URL encoding/decoding — both directions, both formats, instantly.</p>
+
+    <div class="privacy-note"><i class="fas fa-lock"></i> Your text is processed locally in your browser and never sent anywhere.</div>
+
+    <div class="tool-panel">
+      <div class="form-row">
+        <label>Mode</label>
+        <select id="mode">
+          <option value="base64">Base64</option>
+          <option value="url">URL Encoding</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="inputText">Input</label>
+        <textarea id="inputText" placeholder="Type or paste text here…"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="encodeBtn"><i class="fas fa-lock"></i> Encode</button>
+        <button class="btn secondary" id="decodeBtn"><i class="fas fa-unlock"></i> Decode</button>
+        <button class="btn secondary" id="copyBtn"><i class="fas fa-copy"></i> Copy Output</button>
+        <button class="btn secondary" id="swapBtn"><i class="fas fa-exchange-alt"></i> Swap Input/Output</button>
+      </div>
+
+      <p class="note" id="statusMsg"></p>
+
+      <div class="form-row" style="margin-top:14px;">
+        <label for="outputText">Output</label>
+        <textarea id="outputText" readonly placeholder="Result will appear here…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const mode = document.getElementById('mode');
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const encodeBtn = document.getElementById('encodeBtn');
+    const decodeBtn = document.getElementById('decodeBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const swapBtn = document.getElementById('swapBtn');
+    const statusMsg = document.getElementById('statusMsg');
+
+    function utf8ToBase64(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+    function base64ToUtf8(str) {
+      return decodeURIComponent(escape(atob(str)));
+    }
+
+    encodeBtn.addEventListener('click', () => {
+      const text = inputText.value;
+      try {
+        if (mode.value === 'base64') {
+          outputText.value = utf8ToBase64(text);
+        } else {
+          outputText.value = encodeURIComponent(text);
+        }
+        statusMsg.textContent = '✓ Encoded successfully.';
+        statusMsg.style.color = '#2a9d8f';
+      } catch (err) {
+        statusMsg.textContent = '✗ Error encoding: ' + err.message;
+        statusMsg.style.color = '#c0392b';
+      }
+    });
+
+    decodeBtn.addEventListener('click', () => {
+      const text = inputText.value;
+      try {
+        if (mode.value === 'base64') {
+          outputText.value = base64ToUtf8(text);
+        } else {
+          outputText.value = decodeURIComponent(text);
+        }
+        statusMsg.textContent = '✓ Decoded successfully.';
+        statusMsg.style.color = '#2a9d8f';
+      } catch (err) {
+        statusMsg.textContent = '✗ Error decoding: input is not valid ' + (mode.value === 'base64' ? 'Base64.' : 'URL-encoded text.');
+        statusMsg.style.color = '#c0392b';
+      }
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      if (!outputText.value) return;
+      try {
+        await navigator.clipboard.writeText(outputText.value);
+        statusMsg.textContent = 'Copied to clipboard.';
+        statusMsg.style.color = '#2a9d8f';
+      } catch {
+        outputText.select();
+        document.execCommand('copy');
+      }
+    });
+
+    swapBtn.addEventListener('click', () => {
+      const tmp = inputText.value;
+      inputText.value = outputText.value;
+      outputText.value = tmp;
+    });
+
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

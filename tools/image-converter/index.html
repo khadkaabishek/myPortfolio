@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Image Converter | Abishek Khadka</title>
+<meta name="description" content="Convert images between JPG, PNG, and WebP instantly in your browser. No upload required." />
+<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="../tools.css" />
+</head>
+<body class="tools-page">
+  <div class="content-topbar">
+    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="tool-shell">
+    <div class="tool-eyebrow">Image Tools</div>
+    <h1>Image Converter</h1>
+    <p class="tool-dek">Convert an image between JPG, PNG, and WebP. Useful for getting a transparent PNG down to a smaller JPG, or grabbing a modern WebP version of an old file.</p>
+
+    <div class="privacy-note"><i class="fas fa-lock"></i> Your image never leaves this device — everything is processed locally in your browser.</div>
+
+    <div class="tool-panel">
+      <label class="dropzone" id="dropzone">
+        <i class="fas fa-cloud-upload-alt dz-icon"></i>
+        <div><strong>Click to choose an image</strong> or drag and drop it here</div>
+        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp" />
+      </label>
+
+      <div id="controls" style="display:none; margin-top:22px;">
+        <div class="form-row">
+          <label for="outFormat">Convert to</label>
+          <select id="outFormat">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </div>
+        <div class="form-row" id="qualityRow">
+          <label for="quality">Quality (JPEG/WebP only): <span id="qualityValue">90</span>%</label>
+          <input type="range" id="quality" min="10" max="100" value="90" />
+        </div>
+        <div class="btn-row">
+          <button class="btn" id="convertBtn"><i class="fas fa-sync-alt"></i> Convert</button>
+          <a class="btn secondary" id="downloadBtn" style="display:none;" download="converted-image.png"><i class="fas fa-download"></i> Download</a>
+        </div>
+      </div>
+
+      <div class="result-box" id="resultBox" style="display:none;">
+        <img id="previewImg" class="preview-img" alt="Converted preview" />
+        <div class="stat-row">
+          <div class="stat-box"><span class="num" id="fileFormat">–</span><span class="label">New format</span></div>
+          <div class="stat-box"><span class="num" id="fileSize">–</span><span class="label">File size</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="workCanvas" style="display:none;"></canvas>
+
+  <script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const controls = document.getElementById('controls');
+    const outFormat = document.getElementById('outFormat');
+    const quality = document.getElementById('quality');
+    const qualityValue = document.getElementById('qualityValue');
+    const convertBtn = document.getElementById('convertBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const resultBox = document.getElementById('resultBox');
+    const previewImg = document.getElementById('previewImg');
+    const fileFormatEl = document.getElementById('fileFormat');
+    const fileSizeEl = document.getElementById('fileSize');
+    const canvas = document.getElementById('workCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let currentImage = null;
+
+    function formatBytes(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    }
+
+    function loadFile(file) {
+      if (!file || !file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          currentImage = img;
+          controls.style.display = 'block';
+          resultBox.style.display = 'none';
+          downloadBtn.style.display = 'none';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    dropzone.addEventListener('click', (e) => { if (e.target !== fileInput) fileInput.click(); });
+    fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+    dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      loadFile(e.dataTransfer.files[0]);
+    });
+
+    quality.addEventListener('input', () => { qualityValue.textContent = quality.value; });
+
+    convertBtn.addEventListener('click', () => {
+      if (!currentImage) return;
+      canvas.width = currentImage.naturalWidth;
+      canvas.height = currentImage.naturalHeight;
+      const format = outFormat.value;
+
+      // Fill white background for JPEG (no alpha support)
+      if (format === 'image/jpeg') {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      ctx.drawImage(currentImage, 0, 0);
+
+      const q = parseInt(quality.value, 10) / 100;
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        previewImg.src = url;
+        resultBox.style.display = 'block';
+
+        const ext = format === 'image/png' ? 'png' : (format === 'image/webp' ? 'webp' : 'jpg');
+        fileFormatEl.textContent = ext.toUpperCase();
+        fileSizeEl.textContent = formatBytes(blob.size);
+        downloadBtn.href = url;
+        downloadBtn.download = 'converted-image.' + ext;
+        downloadBtn.style.display = 'inline-flex';
+      }, format, format === 'image/png' ? undefined : q);
+    });
+
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

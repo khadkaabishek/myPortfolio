@@ -23,7 +23,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656" crossorigin="anonymous"></script>
 
 </head>
-<body class="light-mode">
+<body>
   <div class="mobile-header">
     <button id="themeToggle" class="theme-toggle"><i class="fas fa-sun"></i></button>
     <div id="mobileMenu" class="mobile-menu">
@@ -33,6 +33,7 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="./projects/index.html">Projects</a></li>
         <li><a href="./case-studies/index.html">Case Studies</a></li>
+        <li><a href="./Useful_tools.html">Tools</a></li>
         <li><a href="./contact/index.html">Contact</a></li>
         <li><a href="#" id="enterAbishekBtnMobile" class="nav-link"><i class="fas fa-lock"></i> Only Abishek</a></li>
       </ul>
@@ -40,10 +41,12 @@
   </div>
 
   <div class="hero-section">
+    <canvas class="hero-bg-canvas" aria-hidden="true"></canvas>
     <div class="hero-left">
       <div class="profile-image-container">
         <img src="./Assets/image.jpg" alt="Abishek Khadka" class="profile-img" />
       </div>
+      <h1 class="hero-name">Abishek Khadka</h1>
       <div id="animated-text" class="typing-animation"></div>
     </div>
     <div class="hero-right">
@@ -64,9 +67,11 @@
   <div class="container">
     <!-- Left Section (Profile & Navbar) -->
     <aside class="left-section">
+      <canvas class="hero-bg-canvas" aria-hidden="true"></canvas>
       <div class="upper-section">
         <div class="profile-image-container">
           <img src="./Assets/image.jpg" alt="Abishek Khadka" class="profile-img" />
+          <h1 class="hero-name">Abishek Khadka</h1>
           <div id="animated-text-mobile" class="typing-animation"></div>
           <div class="button-group">
             <a href="./Assets/updResume.pdf" target="_blank" rel="noopener noreferrer" class="action-btn download-btn">Download Resume <i class="fa-solid fa-download"></i></a>
@@ -79,7 +84,8 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="./projects/index.html">Projects</a></li>
             <li><a href="./case-studies/index.html">Case Studies</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="./Useful_tools.html">Tools</a></li>
+            <li><a href="./contact/index.html">Contact</a></li>
             <li><a href="#" id="enterAbishekBtn" class="nav-link"><i class="fas fa-lock"></i> Only Abishek</a></li>
           </ul>
         </nav>
@@ -164,7 +170,11 @@
         <p>Beyond write-ups, some things are more fun to poke at directly. These are separately hosted playgrounds — live simulations and small browser games — kept apart from the main showcase so they can be its own space to experiment.</p>
         <div class="labs-grid">
           <a class="lab-card" href="https://projects.abishek-khadka.com.np" target="_blank" rel="noopener noreferrer">
-            <div class="lab-thumb"><img src="./Assets/gravity-sim-preview.svg" alt="Gravity Ball Trajectory Simulation preview" loading="lazy" /></div>
+            <div class="lab-thumb">
+              <canvas id="gravityPreviewCanvas" aria-hidden="true"></canvas>
+              <img src="./Assets/gravity-sim-preview.svg" alt="Gravity Ball Trajectory Simulation preview" loading="lazy" style="display:none;" />
+              <div class="lab-live-badge"><span class="dot"></span>Live</div>
+            </div>
             <div class="lab-body">
               <div class="lab-badge">Live Simulation</div>
               <h3>Project Simulations</h3>
@@ -173,7 +183,11 @@
             </div>
           </a>
           <a class="lab-card" href="https://games.abishek-khadka.com.np" target="_blank" rel="noopener noreferrer">
-            <div class="lab-thumb"><img src="./Assets/games-preview.svg" alt="Games Arcade preview" loading="lazy" /></div>
+            <div class="lab-thumb">
+              <canvas id="arcadePreviewCanvas" aria-hidden="true"></canvas>
+              <img src="./Assets/games-preview.svg" alt="Games Arcade preview" loading="lazy" style="display:none;" />
+              <div class="lab-live-badge"><span class="dot"></span>Live</div>
+            </div>
             <div class="lab-body">
               <div class="lab-badge">Live Arcade</div>
               <h3>Games</h3>
@@ -249,6 +263,7 @@
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script src="./projects/projects-data.js"></script>
   <script src="./script.js"></script>
+  <script src="./interactions.js"></script>
 
   <script>
     // <![CDATA[  <-- For SVG support

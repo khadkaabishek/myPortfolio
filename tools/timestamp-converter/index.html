@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Timestamp Converter | Abishek Khadka</title>
+<meta name="description" content="Convert between Unix timestamps and human-readable dates, in your local timezone or UTC. Runs entirely in your browser." />
+<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="../tools.css" />
+</head>
+<body class="tools-page">
+  <div class="content-topbar">
+    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="tool-shell">
+    <div class="tool-eyebrow">Developer Tools</div>
+    <h1>Timestamp Converter</h1>
+    <p class="tool-dek">Convert a Unix timestamp to a human-readable date, or the other way around. Shows results in both your local timezone and UTC.</p>
+
+    <div class="privacy-note"><i class="fas fa-lock"></i> Everything here runs locally in your browser.</div>
+
+    <div class="tool-panel">
+      <h3 style="margin-top:0;">Current time</h3>
+      <div class="stat-row">
+        <div class="stat-box"><span class="num" id="nowUnix">–</span><span class="label">Unix (seconds)</span></div>
+        <div class="stat-box"><span class="num" id="nowLocal">–</span><span class="label">Local time</span></div>
+        <div class="stat-box"><span class="num" id="nowUtc">–</span><span class="label">UTC</span></div>
+      </div>
+    </div>
+
+    <div class="tool-panel">
+      <h3 style="margin-top:0;">Unix timestamp → Date</h3>
+      <div class="form-row-inline">
+        <div class="form-row">
+          <label for="unixInput">Unix timestamp</label>
+          <input type="text" id="unixInput" placeholder="e.g. 1735689600" />
+        </div>
+        <div class="form-row" style="max-width:160px;">
+          <label for="unixUnit">Unit</label>
+          <select id="unixUnit">
+            <option value="s">Seconds</option>
+            <option value="ms">Milliseconds</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="unixToDateBtn"><i class="fas fa-arrow-right"></i> Convert to Date</button>
+      </div>
+      <div class="result-box" id="unixResult" style="display:none;">
+        <div class="stat-row">
+          <div class="stat-box"><span class="num" id="resultLocal">–</span><span class="label">Local time</span></div>
+          <div class="stat-box"><span class="num" id="resultUtc">–</span><span class="label">UTC</span></div>
+          <div class="stat-box"><span class="num" id="resultIso">–</span><span class="label">ISO 8601</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-panel">
+      <h3 style="margin-top:0;">Date → Unix timestamp</h3>
+      <div class="form-row">
+        <label for="dateInput">Date &amp; time (your local timezone)</label>
+        <input type="datetime-local" id="dateInput" />
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="dateToUnixBtn"><i class="fas fa-arrow-right"></i> Convert to Timestamp</button>
+      </div>
+      <div class="result-box" id="dateResult" style="display:none;">
+        <div class="stat-row">
+          <div class="stat-box"><span class="num" id="resultSeconds">–</span><span class="label">Unix (seconds)</span></div>
+          <div class="stat-box"><span class="num" id="resultMillis">–</span><span class="label">Unix (milliseconds)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nowUnix = document.getElementById('nowUnix');
+    const nowLocal = document.getElementById('nowLocal');
+    const nowUtc = document.getElementById('nowUtc');
+
+    function tick() {
+      const now = new Date();
+      nowUnix.textContent = Math.floor(now.getTime() / 1000);
+      nowLocal.textContent = now.toLocaleString();
+      nowUtc.textContent = now.toUTCString();
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    const unixInput = document.getElementById('unixInput');
+    const unixUnit = document.getElementById('unixUnit');
+    const unixToDateBtn = document.getElementById('unixToDateBtn');
+    const unixResult = document.getElementById('unixResult');
+    const resultLocal = document.getElementById('resultLocal');
+    const resultUtc = document.getElementById('resultUtc');
+    const resultIso = document.getElementById('resultIso');
+
+    unixToDateBtn.addEventListener('click', () => {
+      const raw = parseFloat(unixInput.value.trim());
+      if (isNaN(raw)) { unixResult.style.display = 'none'; return; }
+      const ms = unixUnit.value === 's' ? raw * 1000 : raw;
+      const d = new Date(ms);
+      if (isNaN(d.getTime())) { unixResult.style.display = 'none'; return; }
+      resultLocal.textContent = d.toLocaleString();
+      resultUtc.textContent = d.toUTCString();
+      resultIso.textContent = d.toISOString();
+      unixResult.style.display = 'block';
+    });
+
+    const dateInput = document.getElementById('dateInput');
+    const dateToUnixBtn = document.getElementById('dateToUnixBtn');
+    const dateResult = document.getElementById('dateResult');
+    const resultSeconds = document.getElementById('resultSeconds');
+    const resultMillis = document.getElementById('resultMillis');
+
+    dateToUnixBtn.addEventListener('click', () => {
+      if (!dateInput.value) { dateResult.style.display = 'none'; return; }
+      const d = new Date(dateInput.value);
+      if (isNaN(d.getTime())) { dateResult.style.display = 'none'; return; }
+      resultSeconds.textContent = Math.floor(d.getTime() / 1000);
+      resultMillis.textContent = d.getTime();
+      dateResult.style.display = 'block';
+    });
+
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

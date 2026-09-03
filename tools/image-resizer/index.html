@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Image Resizer | Abishek Khadka</title>
+<meta name="description" content="Resize images by exact pixel dimensions or percentage, with optional aspect-ratio lock. Runs entirely in your browser." />
+<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="../tools.css" />
+</head>
+<body class="tools-page">
+  <div class="content-topbar">
+    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="tool-shell">
+    <div class="tool-eyebrow">Image Tools</div>
+    <h1>Image Resizer</h1>
+    <p class="tool-dek">Resize an image to exact pixel dimensions or by percentage, with an option to lock the aspect ratio so nothing gets stretched.</p>
+
+    <div class="privacy-note"><i class="fas fa-lock"></i> Your image never leaves this device — everything is processed locally in your browser.</div>
+
+    <div class="tool-panel">
+      <label class="dropzone" id="dropzone">
+        <i class="fas fa-cloud-upload-alt dz-icon"></i>
+        <div><strong>Click to choose an image</strong> or drag and drop it here</div>
+        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" />
+      </label>
+
+      <div id="controls" style="display:none; margin-top:22px;">
+        <div class="form-row">
+          <label>Resize mode</label>
+          <select id="mode">
+            <option value="pixels">Exact dimensions (px)</option>
+            <option value="percent">Percentage of original</option>
+          </select>
+        </div>
+
+        <div id="pixelFields" class="form-row-inline">
+          <div class="form-row">
+            <label for="widthInput">Width (px)</label>
+            <input type="number" id="widthInput" min="1" />
+          </div>
+          <div class="form-row">
+            <label for="heightInput">Height (px)</label>
+            <input type="number" id="heightInput" min="1" />
+          </div>
+        </div>
+
+        <div id="percentFields" class="form-row" style="display:none;">
+          <label for="percentInput">Percentage: <span id="percentValue">100</span>%</label>
+          <input type="range" id="percentInput" min="1" max="200" value="100" />
+        </div>
+
+        <div class="form-row">
+          <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+            <input type="checkbox" id="lockAspect" checked style="width:auto;" /> Lock aspect ratio
+          </label>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" id="resizeBtn"><i class="fas fa-expand"></i> Resize</button>
+          <a class="btn secondary" id="downloadBtn" style="display:none;" download="resized-image.png"><i class="fas fa-download"></i> Download</a>
+        </div>
+      </div>
+
+      <div class="result-box" id="resultBox" style="display:none;">
+        <img id="previewImg" class="preview-img" alt="Resized preview" />
+        <div class="stat-row">
+          <div class="stat-box"><span class="num" id="origDims">–</span><span class="label">Original</span></div>
+          <div class="stat-box"><span class="num" id="newDims">–</span><span class="label">New size</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="workCanvas" style="display:none;"></canvas>
+
+  <script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const controls = document.getElementById('controls');
+    const mode = document.getElementById('mode');
+    const pixelFields = document.getElementById('pixelFields');
+    const percentFields = document.getElementById('percentFields');
+    const widthInput = document.getElementById('widthInput');
+    const heightInput = document.getElementById('heightInput');
+    const percentInput = document.getElementById('percentInput');
+    const percentValue = document.getElementById('percentValue');
+    const lockAspect = document.getElementById('lockAspect');
+    const resizeBtn = document.getElementById('resizeBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const resultBox = document.getElementById('resultBox');
+    const previewImg = document.getElementById('previewImg');
+    const origDimsEl = document.getElementById('origDims');
+    const newDimsEl = document.getElementById('newDims');
+    const canvas = document.getElementById('workCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let currentImage = null;
+    let aspectRatio = 1;
+    let updatingFromCode = false;
+
+    function loadFile(file) {
+      if (!file || !file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          currentImage = img;
+          aspectRatio = img.naturalWidth / img.naturalHeight;
+          widthInput.value = img.naturalWidth;
+          heightInput.value = img.naturalHeight;
+          controls.style.display = 'block';
+          resultBox.style.display = 'none';
+          downloadBtn.style.display = 'none';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    dropzone.addEventListener('click', (e) => { if (e.target !== fileInput) fileInput.click(); });
+    fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+    dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      loadFile(e.dataTransfer.files[0]);
+    });
+
+    mode.addEventListener('change', () => {
+      const isPixels = mode.value === 'pixels';
+      pixelFields.style.display = isPixels ? 'flex' : 'none';
+      percentFields.style.display = isPixels ? 'none' : 'block';
+    });
+
+    percentInput.addEventListener('input', () => { percentValue.textContent = percentInput.value; });
+
+    widthInput.addEventListener('input', () => {
+      if (updatingFromCode || !lockAspect.checked) return;
+      updatingFromCode = true;
+      heightInput.value = Math.round(widthInput.value / aspectRatio);
+      updatingFromCode = false;
+    });
+    heightInput.addEventListener('input', () => {
+      if (updatingFromCode || !lockAspect.checked) return;
+      updatingFromCode = true;
+      widthInput.value = Math.round(heightInput.value * aspectRatio);
+      updatingFromCode = false;
+    });
+
+    resizeBtn.addEventListener('click', () => {
+      if (!currentImage) return;
+      let targetW, targetH;
+      if (mode.value === 'pixels') {
+        targetW = parseInt(widthInput.value, 10);
+        targetH = parseInt(heightInput.value, 10);
+      } else {
+        const pct = parseInt(percentInput.value, 10) / 100;
+        targetW = Math.round(currentImage.naturalWidth * pct);
+        targetH = Math.round(currentImage.naturalHeight * pct);
+      }
+      if (!targetW || !targetH || targetW < 1 || targetH < 1) return;
+
+      canvas.width = targetW;
+      canvas.height = targetH;
+      ctx.clearRect(0, 0, targetW, targetH);
+      ctx.drawImage(currentImage, 0, 0, targetW, targetH);
+
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        previewImg.src = url;
+        resultBox.style.display = 'block';
+        origDimsEl.textContent = currentImage.naturalWidth + '×' + currentImage.naturalHeight;
+        newDimsEl.textContent = targetW + '×' + targetH;
+        downloadBtn.href = url;
+        downloadBtn.style.display = 'inline-flex';
+      }, 'image/png');
+    });
+
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

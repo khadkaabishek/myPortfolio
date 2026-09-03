@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Useful Tools | Abishek Khadka</title>
+<meta name="description" content="A collection of free, fast, browser-based utilities — image compression and resizing, QR codes, PDF tools, JSON formatting, and more. Everything runs locally in your browser." />
+<link rel="icon" type="image/png" href="./Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="./tools/tools.css" />
+</head>
+<body class="tools-page">
+  <div class="content-topbar">
+    <a href="./index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="./index.html#contact" class="content-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <div class="tools-hero">
+    <h1>Useful Tools</h1>
+    <p>A small set of everyday utilities I built for myself and kept around — image compression, resizing and format conversion, QR codes, a PDF toolkit, JSON formatting, and a few more. Every tool runs entirely in your browser: nothing you upload here is sent to a server.</p>
+  </div>
+
+  <div class="tools-grid">
+    <a class="tool-card" href="./tools/image-compressor/index.html">
+      <i class="fas fa-compress tool-icon"></i>
+      <h2>Image Compressor</h2>
+      <p>Shrink JPG, PNG, and WebP file sizes with an adjustable quality slider — before/after preview included.</p>
+    </a>
+    <a class="tool-card" href="./tools/image-resizer/index.html">
+      <i class="fas fa-expand tool-icon"></i>
+      <h2>Image Resizer</h2>
+      <p>Resize images by exact dimensions or percentage, with an option to lock the aspect ratio.</p>
+    </a>
+    <a class="tool-card" href="./tools/image-converter/index.html">
+      <i class="fas fa-sync-alt tool-icon"></i>
+      <h2>Image Converter</h2>
+      <p>Convert between JPG, PNG, and WebP formats instantly, right in your browser.</p>
+    </a>
+    <a class="tool-card" href="./tools/qr-generator/index.html">
+      <i class="fas fa-qrcode tool-icon"></i>
+      <h2>QR Code Generator</h2>
+      <p>Turn any URL or text into a downloadable QR code, with adjustable size and color.</p>
+    </a>
+    <a class="tool-card" href="./tools/pdf-toolkit/index.html">
+      <i class="fas fa-file-pdf tool-icon"></i>
+      <h2>PDF Toolkit</h2>
+      <p>Merge multiple PDFs, split pages out, or rotate pages — all processed locally.</p>
+    </a>
+    <a class="tool-card" href="./tools/json-formatter/index.html">
+      <i class="fas fa-brackets-curly tool-icon"></i>
+      <h2>JSON Formatter &amp; Validator</h2>
+      <p>Pretty-print, minify, and validate JSON with clear, line-numbered error messages.</p>
+    </a>
+    <a class="tool-card" href="./tools/word-counter/index.html">
+      <i class="fas fa-font tool-icon"></i>
+      <h2>Word &amp; Character Counter</h2>
+      <p>Live word, character, sentence, and paragraph counts, plus estimated reading time.</p>
+    </a>
+    <a class="tool-card" href="./tools/color-tools/index.html">
+      <i class="fas fa-palette tool-icon"></i>
+      <h2>Color Converter &amp; Palette Generator</h2>
+      <p>Convert between HEX, RGB, and HSL, and generate a matching color palette from any base color.</p>
+    </a>
+    <a class="tool-card" href="./tools/base64-url/index.html">
+      <i class="fas fa-code tool-icon"></i>
+      <h2>Base64 / URL Encoder-Decoder</h2>
+      <p>Encode or decode text as Base64 or a URL-safe string, both directions, instantly.</p>
+    </a>
+    <a class="tool-card" href="./tools/timestamp-converter/index.html">
+      <i class="fas fa-clock tool-icon"></i>
+      <h2>Timestamp Converter</h2>
+      <p>Convert between Unix timestamps and human-readable dates, in any timezone.</p>
+    </a>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") === "dark");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>
