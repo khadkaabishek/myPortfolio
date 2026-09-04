@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Shared site enhancements: custom animated cursor + smooth page transitions
+   Loaded on every page. Respects prefers-reduced-motion and touch devices.
+   ========================================================================== */
+
+/* ---------- Page transition fade ---------- */
+/* Body starts hidden and fades in once the page-transitions script confirms
+   the document is ready; this also fades out just before navigating away. */
+html.has-page-transitions body {
+  opacity: 0;
+}
+html.has-page-transitions body.page-loaded {
+  opacity: 1;
+  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.has-page-transitions body.page-exiting {
+  opacity: 0;
+  transition: opacity 0.22s cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Progressive enhancement: real cross-document crossfade on browsers that
+   support the View Transitions API for navigations (Chrome/Edge 126+).
+   Harmless no-op everywhere else. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root) {
+  animation-duration: 0.28s;
+  animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-page-transitions body,
+  html.has-page-transitions body.page-loaded,
+  html.has-page-transitions body.page-exiting {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Custom animated cursor ---------- */
+/* Only enabled on devices with a real pointer (hover: hover) via JS adding
+   .has-custom-cursor to <html>; touch devices keep their native cursor. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--cyan, #00E5FF);
+  box-shadow: 0 0 8px 1px rgba(0, 229, 255, 0.7);
+  transition: opacity 0.15s ease, background 0.2s ease;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(0, 229, 255, 0.55);
+  background: rgba(124, 92, 255, 0.06);
+  transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.22s ease,
+              background 0.22s ease,
+              opacity 0.15s ease;
+}
+
+/* Hover state over interactive elements: ring grows and brightens */
+.cursor-ring.is-hovering {
+  width: 52px;
+  height: 52px;
+  border-color: var(--violet, #7C5CFF);
+  background: rgba(124, 92, 255, 0.12);
+}
+
+/* Pressed state: quick contraction for tactile click feedback */
+.cursor-ring.is-pressing {
+  width: 26px;
+  height: 26px;
+}
+.cursor-dot.is-pressing {
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+/* Fade the custom cursor out at the very edges / when it leaves the window */
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0;
+}
+
+/* Click ripple pulse */
+.cursor-click-ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 229, 255, 0.6);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: cursorRipple 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes cursorRipple {
+  0%   { width: 10px; height: 10px; opacity: 0.9; }
+  100% { width: 60px; height: 60px; opacity: 0; }
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: auto !important;
+  }
+  .cursor-dot, .cursor-ring, .cursor-click-ripple {
+    display: none !important;
+  }
+}

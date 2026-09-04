@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>document.documentElement.classList.add('has-page-transitions');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SmartFarming — An IoT Pipeline from Sensor to Dashboard | Abishek Khadka</title>
 <meta name="description" content="How an ESP32 sensor node, a PHP/MySQL ingestion layer, and a weighted k-NN crop recommender came together into an end-to-end smart farming system." />
@@ -9,6 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 <link rel="stylesheet" href="./content.css" />
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../site-enhancements.css" />
 </head>
 <body class="content-page">
   <div class="content-topbar">
@@ -121,5 +123,7 @@ confidence = (matching_features / len(valid_features)) * 100</code></pre>
       localStorage.setItem("theme", dark ? "dark" : "light");
     });
   </script>
+<script src="../cursor.js"></script>
+<script src="../page-transitions.js"></script>
 </body>
 </html>

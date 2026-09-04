@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>document.documentElement.classList.add('has-page-transitions');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PDF Toolkit | Abishek Khadka</title>
 <meta name="description" content="Merge, split, and rotate PDF files entirely in your browser using pdf-lib. No upload required." />
@@ -9,6 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 <link rel="stylesheet" href="../tools.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<link rel="stylesheet" href="../../site-enhancements.css" />
 </head>
 <body class="tools-page">
   <div class="content-topbar">
@@ -95,7 +97,13 @@
   </div>
 
   <script>
-    const { PDFDocument, degrees } = PDFLib;
+    var PDFLibAvailable = typeof PDFLib !== "undefined";
+    var PDFDocument, degrees;
+    if (PDFLibAvailable) {
+      ({ PDFDocument, degrees } = PDFLib);
+    } else {
+      console.warn("pdf-lib failed to load from the CDN — PDF tools will show an error if used, but the rest of the page still works.");
+    }
 
     // ---------- Tabs ----------
     const panels = { merge: document.getElementById('mergePanel'), split: document.getElementById('splitPanel'), rotate: document.getElementById('rotatePanel') };
@@ -148,6 +156,7 @@
     });
 
     mergeBtn.addEventListener('click', async () => {
+      if (!PDFLibAvailable) { mergeStatus.textContent = 'PDF engine failed to load. Please check your connection and reload the page.'; return; }
       if (mergeFiles.length < 2) { mergeStatus.textContent = 'Add at least two PDF files to merge.'; return; }
       mergeStatus.textContent = 'Merging…';
       try {
@@ -183,6 +192,7 @@
 
     async function loadSplitFile(file) {
       if (!file || file.type !== 'application/pdf') return;
+      if (!PDFLibAvailable) { splitStatus.textContent = 'PDF engine failed to load. Please check your connection and reload the page.'; return; }
       splitPdfBytes = await file.arrayBuffer();
       const pdf = await PDFDocument.load(splitPdfBytes);
       splitPageCount = pdf.getPageCount();
@@ -223,6 +233,7 @@
     }
 
     splitBtn.addEventListener('click', async () => {
+      if (!PDFLibAvailable) { splitStatus.textContent = 'PDF engine failed to load. Please check your connection and reload the page.'; return; }
       if (!splitPdfBytes) return;
       const indices = parsePageRange(pageRangeInput.value, splitPageCount);
       if (indices.length === 0) { splitStatus.textContent = 'Enter a valid page range, e.g. "1-3, 5".'; return; }
@@ -270,6 +281,7 @@
     });
 
     rotateBtn.addEventListener('click', async () => {
+      if (!PDFLibAvailable) { rotateStatus.textContent = 'PDF engine failed to load. Please check your connection and reload the page.'; return; }
       if (!rotatePdfBytes) return;
       rotateStatus.textContent = 'Rotating…';
       try {
@@ -305,5 +317,7 @@
 
     showTab('merge');
   </script>
+<script src="../../cursor.js"></script>
+<script src="../../page-transitions.js"></script>
 </body>
 </html>
