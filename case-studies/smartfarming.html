@@ -37,9 +37,15 @@
       <span class="tag">scikit-learn</span>
     </div>
 
+    <figure class="article-hero-img">
+      <img src="../Project_Assets/smartfarmThumbnail.jpeg" alt="Team Iterators' SmartFarming demo table at the Noskathon hackathon, showing the live dashboard, the weather-forecast panel, and the potted soil rig wired to the ESP32 sensor node" loading="lazy" />
+    </figure>
+    <p class="article-dek" style="font-size:0.85rem; margin-top:-24px; color:var(--ink-dim);">The actual demo setup at Noskathon: a potted soil sample wired to the DHT11/ESP32 sensor node on the right, with the live dashboard and landing page running on the two laptops.</p>
+
     <section>
       <h2>Overview</h2>
       <p>SmartFarming set out to answer a deceptively simple question: what does a farmer actually want to look at? Not raw sensor voltages, and not a black-box AI verdict either — something in between. The system ended up as three connected layers built by the team at different points in the hackathon: a DHT11-based ESP32 node that reports temperature and humidity over Wi-Fi, a PHP/MySQL ingestion endpoint and a parallel Flask dashboard that render that data as something readable, and a k-nearest-neighbors crop recommender that turns soil and climate numbers into a ranked, confidence-scored suggestion of what to plant. None of these three pieces started out designed to fit together — they were built to solve separate parts of the same farming problem — which is exactly what made integrating them instructive.</p>
+      <p>The demo rig, shown above, was deliberately makeshift: a handful of soil in a plastic bowl standing in for a plot of farmland, with the DHT11 sensor and ESP32 taped together and wired straight into a breadboard rather than housed in any enclosure. Repurposed plastic cups held secondary probes during testing. None of that mattered for what the judges needed to see — the live dashboard on one laptop and the landing page on the other were pulling real numbers off that sensor in real time, which was the actual point of the demo.</p>
     </section>
 
     <section>
@@ -108,7 +114,7 @@ confidence = (matching_features / len(valid_features)) * 100</code></pre>
       document.body.classList.toggle("dark-mode", dark);
       icon.className = dark ? "fas fa-moon" : "fas fa-sun";
     }
-    applyTheme(localStorage.getItem("theme") === "dark");
+    applyTheme(localStorage.getItem("theme") !== "light");
     toggle.addEventListener("click", () => {
       const dark = !document.body.classList.contains("dark-mode");
       applyTheme(dark);

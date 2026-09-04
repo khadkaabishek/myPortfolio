@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Janata Voice — A Bilingual Civic-Reporting Platform | Abishek Khadka</title>
+<meta name="description" content="How Janata Voice lets citizens report civic issues with photos and a map location, track them through a resolution pipeline, and how a bilingual UI and an experimental Nepali speech-to-text prototype shaped the build." />
+<link rel="icon" type="image/png" href="../Assets/letter-a.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="./content.css" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656" crossorigin="anonymous"></script>
+</head>
+<body class="content-page">
+  <div class="content-topbar">
+    <a href="../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
+    <div class="content-topbar-actions">
+      <a href="./index.html" class="content-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
+    </div>
+  </div>
+
+  <article class="article">
+    <div class="article-eyebrow">Case Study — Civic Tech &amp; Full-Stack Development</div>
+    <h1>Janata Voice: Giving Citizens a Direct, Trackable Channel to Report Civic Problems</h1>
+    <p class="article-dek">A bilingual (English/Nepali) platform where residents report potholes, garbage, and utility issues with a photo and a map pin, watch them move from pending to resolved, and vote on the problems that matter most to their ward — plus an experimental Nepali speech-to-text prototype aimed at voice-based reporting.</p>
+    <div class="article-meta">
+      <span>Personal Project</span>
+      <span>React/TypeScript · Node.js/Express · MongoDB · Leaflet</span>
+      <span>~9 min read</span>
+    </div>
+    <div class="article-tags">
+      <span class="tag">React</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">Node.js/Express</span>
+      <span class="tag">MongoDB</span>
+      <span class="tag">Leaflet</span>
+      <span class="tag">FastAPI</span>
+    </div>
+
+    <figure class="article-figure">
+      <img src="../projects/assets/janata-voice.svg" alt="Concept illustration: a citizen's speech bubble reporting a broken streetlight near a ward school, pointing toward a municipal building icon, with an 'IN PROGRESS' status tag" loading="lazy" />
+      <figcaption>Concept illustration of the core loop: a citizen reports an issue, it routes to the municipality, and its status is tracked publicly. (Illustrative — the real UI is a full React dashboard, not this graphic.)</figcaption>
+    </figure>
+
+    <section>
+      <h2>Overview</h2>
+      <p>Most civic problems in a neighborhood — a broken streetlight, an overflowing garbage bin, a pothole that's been there for months — get reported the same informal way: word of mouth, a comment to a neighbor, maybe a call to a ward office that goes nowhere. Janata Voice ("People's Voice") is an attempt to replace that informal, lossy channel with something structured: citizens file an issue with a category, a ward, a location pinned on a map, and up to three photos, and then everyone — the person who reported it, other residents, and municipal staff — can watch it move through <code>pending</code> → <code>in-progress</code> → <code>resolved</code> instead of it just disappearing into a phone call nobody wrote down.</p>
+      <p>Because the platform is meant for actual residents of Nepal, not just a portfolio demo, bilingual support (English and Nepali) was a first-class requirement from the start rather than a translation layer bolted on at the end, and the project also became a testbed for an experimental Nepali speech-to-text feature aimed at people who'd rather describe a problem out loud than type it.</p>
+    </section>
+
+    <section>
+      <h2>System Architecture</h2>
+      <p>The system splits cleanly into a public-facing reporting/voting experience, a verification layer that adds accountability to reports, and an admin side for the municipal staff actually resolving issues.</p>
+      <h3>1. Issue Reporting &amp; Tracking</h3>
+      <p>A citizen files an issue with a title, description, category (sanitation, road, water, electricity, garbage, or other), one of 32 wards, a location pinned on an interactive Leaflet map, and up to three photos uploaded via Multer. Each issue is a MongoDB document with a <code>status</code> field that only moves forward through <code>pending</code> → <code>in-progress</code> → <code>resolved</code>, giving every report a visible, append-only lifecycle rather than a report that can quietly vanish.</p>
+      <h3>2. Community Layer</h3>
+      <p>Other residents can upvote issues that affect them, which surfaces the problems a ward actually cares about rather than just the ones reported first, and join ward- or municipality-level discussion threads to talk through local issues collectively. This turns individual complaints into something closer to a visible community priority list that municipal staff can weigh against each other.</p>
+      <h3>3. Identity &amp; Trust Layer</h3>
+      <p>Because an open reporting system is only as useful as the trust people place in it, citizens can optionally go through a KYC (know-your-citizen) flow — submitting a full name, email, phone number, national ID number, and a photo — which is stored server-side via a dedicated Mongoose model and reviewed independently of any specific issue report. A verified badge on a citizen's reports gives municipal reviewers a reason to prioritize them over anonymous, unverifiable ones.</p>
+      <h3>4. Admin &amp; Resolution Layer</h3>
+      <p>A separate admin dashboard lets municipal staff manage the full issue queue, review pending KYC submissions, and flag genuinely urgent cases as "red alert" priority items that surface above the normal queue. Authentication throughout the platform — for both citizens and admins — is JWT-based, issued and verified by an Express middleware layer shared across all protected routes.</p>
+      <h3>5. Experimental Voice Reporting</h3>
+      <p>A separate FastAPI service prototypes Nepali speech-to-text using OpenAI's Whisper model, accepting an uploaded audio file at a single <code>/upload-audio/</code> endpoint and returning the transcribed Nepali text. It's kept as a standalone service rather than integrated into the main reporting flow, since it's still at the experimental stage — the long-term goal is to let a citizen describe an issue out loud in Nepali and have it pre-fill the report form, lowering the barrier for residents less comfortable typing detailed descriptions.</p>
+      <div class="stat-row">
+        <div class="stat-box"><span class="num">32</span><span class="label">wards supported for issue routing</span></div>
+        <div class="stat-box"><span class="num">3</span><span class="label">photos per issue report</span></div>
+        <div class="stat-box"><span class="num">2</span><span class="label">languages — English &amp; Nepali</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical Challenges Overcome</h2>
+      <ul>
+        <li><strong>Enumerating 32 wards without turning the schema fragile:</strong> Ward names are locality-specific and needed hard validation rather than free text, since downstream features (filtering, admin routing, ward-level discussions) all depend on a report's ward being one of a known, fixed set. Encoding the ward list as a Mongoose <code>enum</code> directly on the <code>Issue</code> schema pushed that validation down to the database layer instead of trusting the frontend to always send a clean value.</li>
+        <li><strong>Keeping KYC data separate from issue data:</strong> Early on, it was tempting to attach identity fields directly onto whichever issue a citizen filed, but that would have meant re-verifying identity on every single report. Splitting KYC into its own model, checked once and referenced afterward, meant a citizen only goes through verification a single time and every subsequent report just inherits that trust status.</li>
+        <li><strong>A status field that can't accidentally go backwards:</strong> Because <code>status</code> is enforced as an enum with a defined forward progression in the controller logic — not just in the frontend — an admin action can't accidentally reopen a resolved issue or skip straight from pending to resolved without an in-progress step, which keeps the audit trail meaningful for residents checking back on a report.</li>
+        <li><strong>Running Nepali speech recognition without a clean off-the-shelf model:</strong> Most speech-to-text APIs have thin or unreliable support for Nepali. Prototyping against OpenAI's Whisper "base" model directly, via a small local FastAPI wrapper rather than a hosted API, gave enough control to actually evaluate transcription quality on real Nepali audio samples before deciding whether the feature was worth building further.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Key Code / Hardware Components</h2>
+      <p>The <code>Issue</code> schema is where most of the system's integrity guarantees actually live — the ward enum and status enum shown below are what keep downstream features (routing, filtering, the admin queue) working against clean, predictable data:</p>
+      <pre><code>const issueSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  ward: { type: String, required: true, enum: ["ward1", "ward2", /* ...through */ "ward32"] },
+  images: { type: [String], required: true },
+  category: {
+    type: String,
+    required: true,
+    enum: ["sanitation", "road", "water", "electricity", "garbage", "other"],
+  },
+  location: { type: String, required: true },
+  latitude: String,
+  longitude: String,
+  status: { type: String, required: true, enum: ["pending", "in-progress", "resolved"] },
+  submittedBY: { type: String, required: true },
+}, { timestamps: true });</code></pre>
+      <p>The voice-reporting prototype's transcription endpoint is deliberately minimal — a single upload route that hands the audio straight to Whisper and writes the result to disk, kept separate from the main API so it can be iterated on without risking the stability of the core reporting flow:</p>
+      <pre><code>@app.post("/upload-audio/")
+async def upload_audio(file: UploadFile = File(...)):
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    nepali_text = transcribe_nepali(file_path)
+    return {"message": "Transcription successful", "text": nepali_text}</code></pre>
+      <p>The full stack is a React 18 + TypeScript + Vite frontend styled with Tailwind CSS, using React Hook Form with Zod for form validation and React-Leaflet for the map picker; a Node.js/Express 5 + MongoDB backend with JWT auth, bcrypt password hashing, Multer for photo uploads, and Nodemailer for verification/reset emails; and the standalone FastAPI speech-to-text service described above.</p>
+    </section>
+
+    <!-- Ad slot -->
+    <div class="ad-slot">
+      <ins class="adsbygoogle" style="display:block; width:100%;" data-ad-client="ca-pub-7467274697628656" data-ad-slot="0000000015" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <p>Janata Voice reinforced how much of a civic platform's real value sits in the boring parts of the schema, not the flashy features. The ward enum, the forward-only status field, and the decision to keep KYC as its own model are unglamorous choices, but they're what actually make the platform trustworthy enough for a municipal staffer to rely on instead of just another unmoderated complaints inbox. Building the bilingual UI from day one, rather than retrofitting Nepali support later, was also a reminder that "who is this actually for" needs to shape architecture decisions early — a translation layer bolted on after the fact tends to leak English assumptions into date formats, pluralization, and form validation in ways that are painful to unwind later. And keeping the Whisper-based speech prototype as a separate, disposable service was the right call precisely because it let the idea be tested honestly, without dragging an unfinished experiment into the reliability requirements of the main reporting pipeline.</p>
+    </section>
+
+    <div class="article-nav">
+      <a href="./index.html"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+      <a href="./spider-aether.html">Next: SPIDER: THE AETHER <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </article>
+
+  <script>
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  <script>
+    const toggle = document.getElementById("themeToggleContent");
+    const icon = toggle.querySelector("i");
+    function applyTheme(dark) {
+      document.body.classList.toggle("dark-mode", dark);
+      icon.className = dark ? "fas fa-moon" : "fas fa-sun";
+    }
+    applyTheme(localStorage.getItem("theme") !== "light");
+    toggle.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark-mode");
+      applyTheme(dark);
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>

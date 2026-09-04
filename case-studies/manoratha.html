@@ -37,6 +37,11 @@
       <span class="tag">Hackathon</span>
     </div>
 
+    <figure class="article-hero-img">
+      <img src="../Project_Assets/manoratha.png" alt="Manoratha homepage — Nepali logo, the tagline 'Healing Together, Growing Stronger', and navigation for Connect to Professionals, Games, Detect Emotion with AI, and Community" loading="lazy" />
+    </figure>
+    <p class="article-dek" style="font-size:0.85rem; margin-top:-24px; color:var(--ink-dim);">The actual Manoratha homepage — the four core modules (professional connect, games, AI emotion detection, community) are all one click away from the nav bar.</p>
+
     <section>
       <h2>Overview</h2>
       <p>Manoratha started from a specific gap: mental-health support in Nepal is thin on the ground, and the youth who need it most often don't have an easy first step to take. Rather than building a single "counseling app," the team scoped Manoratha as a small ecosystem — a way to connect with a professional if you're ready for that, but also lower-friction options (a mood-tracking tool, a place to talk to peers, something to help you calm down in the moment) for people who aren't. That scope is ambitious for a hackathon timeline, and shaping it into four working modules built by different team members in parallel, rather than one deep feature done well, was the central engineering challenge of the project.</p>
@@ -90,6 +95,11 @@ io.on('connection', socket => {
       <p>The face-detection module loads its five <code>face-api.js</code> nets from local model files before touching the camera, then runs detection, landmarks, expressions, and age/gender estimation together on every interval tick — deliberately batched into one <code>Promise.all</code> and one detection call rather than five separate passes, which kept the in-browser frame rate usable on typical laptop webcams during the demo.</p>
     </section>
 
+    <figure class="article-hero-img">
+      <img src="../Project_Assets/manoratha_team.jpeg" alt="Team Iterators holding their participation certificates at the OrbitHacks 2024 hackathon" loading="lazy" />
+      <figcaption>Team Iterators after the 48-hour build, OrbitHacks 2024 (Orbit 2.0).</figcaption>
+    </figure>
+
     <!-- Ad slot -->
     <div class="ad-slot">
       <ins class="adsbygoogle" style="display:block; width:100%;" data-ad-client="ca-pub-7467274697628656" data-ad-slot="0000000014" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -116,7 +126,7 @@ io.on('connection', socket => {
       document.body.classList.toggle("dark-mode", dark);
       icon.className = dark ? "fas fa-moon" : "fas fa-sun";
     }
-    applyTheme(localStorage.getItem("theme") === "dark");
+    applyTheme(localStorage.getItem("theme") !== "light");
     toggle.addEventListener("click", () => {
       const dark = !document.body.classList.contains("dark-mode");
       applyTheme(dark);

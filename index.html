@@ -68,6 +68,7 @@
     <!-- Left Section (Profile & Navbar) -->
     <aside class="left-section">
       <canvas class="hero-bg-canvas" aria-hidden="true"></canvas>
+      <button id="themeToggle_desktop" class="theme-toggle theme-toggle-corner"><i class="fas fa-sun"></i></button>
       <div class="upper-section">
         <div class="profile-image-container">
           <img src="./Assets/image.jpg" alt="Abishek Khadka" class="profile-img" />
@@ -102,8 +103,8 @@
           <p><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</p>
         </div>
       </div>
-      <button id="themeToggle_desktop" class="theme-toggle"><i class="fas fa-sun"></i></button>
     </aside>
+
 
     <!-- Middle Section (Information) -->
     <main class="middle-section">
@@ -306,7 +307,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("q_5jUEeH6Y2MU51hP"); 
+      if (typeof emailjs !== "undefined") {
+        emailjs.init("q_5jUEeH6Y2MU51hP");
+      } else {
+        console.warn("EmailJS failed to load — the contact form will show an error if submitted, but the rest of the page still works.");
+      }
     })();
   </script>
 
@@ -331,8 +336,18 @@
           submitBtn.disabled = true;
           submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
           formStatus.style.display = 'none';
-          
-     
+
+          if (typeof emailjs === 'undefined') {
+            formStatus.textContent = "Sorry, the message service didn't load. Please email me directly at abishekkhadka36@gmail.com";
+            formStatus.style.backgroundColor = '#f8d7da';
+            formStatus.style.color = '#721c24';
+            formStatus.style.border = '1px solid #f5c6cb';
+            formStatus.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            return;
+          }
+
           emailjs.send('service_wsc4bny', 'template_mqjgnhj', formData)
             .then(function(response) {
      

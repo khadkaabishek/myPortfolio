@@ -101,7 +101,7 @@ function setThemeIcons(isDarkMode) {
 }
 
 function applyStoredTheme() {
-  const isDarkMode = localStorage.getItem("theme") === "dark";
+  const isDarkMode = localStorage.getItem("theme") !== "light";
   document.body.classList.toggle("dark-mode", isDarkMode);
   setThemeIcons(isDarkMode);
 }

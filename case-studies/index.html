@@ -24,11 +24,11 @@
   </div>
 
   <div class="cs-list">
-    <a class="cs-card" href="./smart-water-management.html">
+    <a class="cs-card" href="./janata-voice.html">
       <div class="cs-num">01</div>
       <div>
-        <h2>Smart Water Management &amp; Leakage Detection System</h2>
-        <p>An ESP32 and Firebase-backed system for catching pipe leaks in real time using flow and pressure sensing — covering the edge-processing logic, cloud sync design, and the false-positive problem that shaped it.</p>
+        <h2>Janata Voice: A Bilingual Civic-Reporting Platform</h2>
+        <p>Letting citizens report civic issues with a photo and a map pin and track them through a resolution pipeline — the schema decisions that make it trustworthy, and an experimental Nepali speech-to-text prototype.</p>
       </div>
     </a>
     <a class="cs-card" href="./spider-aether.html">
@@ -68,7 +68,7 @@
       document.body.classList.toggle("dark-mode", dark);
       icon.className = dark ? "fas fa-moon" : "fas fa-sun";
     }
-    applyTheme(localStorage.getItem("theme") === "dark");
+    applyTheme(localStorage.getItem("theme") !== "light");
     toggle.addEventListener("click", () => {
       const dark = !document.body.classList.contains("dark-mode");
       applyTheme(dark);

@@ -44,7 +44,6 @@ const PROJECTS = [
     simSrc: "../Project_Assets/smartfarm.mp4",
   },
 
- 
   {
     id: "manoratha",
     title: "Manoratha",
@@ -69,7 +68,6 @@ const PROJECTS = [
     simType: "custom",
   },
 
-
   {
     id: "traffic-violation-detection",
     title: "Two-Wheeler Traffic Violation Detection",
@@ -77,7 +75,7 @@ const PROJECTS = [
     tagline:
       "A YOLOv8 pipeline that detects helmet, triple-riding and plate violations, then auto-generates an e-challan.",
     description:
-      "A final-year minor project that goes beyond simple detection: it's a full Smart Rider Monitoring & Violation Detection System that watches live CCTV/RTSP feeds, flags two-wheeler violations, and turns confirmed cases into a digital e-challan (fine notice) — built by a 3-person team at NCIT.",
+      "A minor project that goes beyond simple detection: it's a full Smart Rider Monitoring & Violation Detection System that watches live CCTV/RTSP feeds, flags two-wheeler violations, and turns confirmed cases into a digital e-challan (fine notice) — built by a 3-person team at NCIT.",
     details: [
       "A YOLOv8 pipeline detects two-wheelers and riders per frame, then checks for helmet non-compliance and triple riding (more passengers than allowed).",
       "When a violation is confirmed, the plate is localized with YOLOv8 and read with OCR (EasyOCR/PaddleOCR) — number-plate recognition only runs after a violation is detected, to keep the pipeline efficient.",
@@ -223,7 +221,7 @@ const PROJECTS = [
     samples: [{ file: "1.png", caption: "Storefront view" }],
     simulation: "ecart",
     simType: "custom",
-  }
+  },
 ];
 
 if (typeof module !== "undefined") module.exports = PROJECTS;

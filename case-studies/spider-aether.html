@@ -26,7 +26,7 @@
     <div class="article-meta">
       <span>Computer Engineering, NCIT</span>
       <span>ESP32 · Servo Kinematics · Wi-Fi</span>
-      <span>~7 min read</span>
+      <span>~9 min read</span>
     </div>
     <div class="article-tags">
       <span class="tag">ESP32</span>
@@ -36,10 +36,16 @@
       <span class="tag">Robotics</span>
     </div>
 
+    <figure class="article-hero-img">
+      <img src="../projects/assets/spyder-robot.jpeg" alt="The SPIDER: THE AETHER prototype — a foam-board chassis with exposed wiring, twin ultrasonic sensors, and four servo-driven legs" loading="lazy" />
+    </figure>
+    <p class="article-dek" style="font-size:0.85rem; margin-top:-24px; color:var(--ink-dim);">The actual prototype: a foam-board chassis, hand-wired breadboard electronics, and four servo legs — built to prove the locomotion and control concept, not to look production-ready.</p>
+
     <section>
       <h2>Overview</h2>
       <p>After a disaster — an earthquake, a building collapse, a landslide — the terrain that first responders need to search is often exactly the terrain that wheeled or tracked robots handle worst: rubble piles, narrow voids, unstable footing. SPIDER: THE AETHER started as a direct response to that gap. It's a legged robot rather than a wheeled one, on the premise that a machine that walks can pick individual footholds the way a person or animal would, instead of needing continuous rollable ground. The current build is a proof-of-concept: four independently driven legs, an onboard sensor suite for obstacle and hazard awareness, and a Wi-Fi control link so an operator can drive it from a safe distance using nothing more than a phone or laptop browser.</p>
       <p>The project name reflects its intended niche deliberately — "AETHER" as in operating in the open, unstructured air of a disaster site rather than a controlled lab floor — and the "spider" framing points at the core engineering bet: multi-legged locomotion trades some speed for the ability to traverse ground that would stop a wheeled platform outright.</p>
+      <p>As the photo above shows, this is deliberately a proof-of-concept build rather than a finished product: the chassis is foam board rather than a machined or 3D-printed shell, and the electronics are hand-wired on breadboard-style connections rather than a custom PCB. That was a conscious choice — at the prototype stage, the goal was to validate the gait, the sensing, and the wireless control loop as cheaply and quickly as possible, with the enclosure and wiring harness treated as a later-stage problem once the core mechanism was proven out.</p>
     </section>
 
     <section>
@@ -51,6 +57,8 @@
       <p>Two ultrasonic distance sensors, mounted front and rear, give the robot basic obstacle awareness so an operator (or, eventually, an autonomous routine) can detect a wall or rubble edge before driving into it. A smoke/gas sensor is also onboard, repurposing the same telemetry channel to give early warning of hazardous air — directly relevant to a disaster-response use case where smoke or gas leaks are a real risk to human responders following behind the robot.</p>
       <h3>3. Control Layer</h3>
       <p>Rather than requiring a companion app, the ESP32 runs a lightweight embedded web server and serves a control page directly over its own Wi-Fi access point. An operator connects to the robot's network, opens the page in any browser, and sends movement and sensor-poll commands over simple HTTP requests. This "robot serves its own UI" pattern removes an entire dependency (no app store, no pairing flow, no OS-specific client) at the cost of a slightly less polished interface than a native app would offer.</p>
+      <h3>4. Physical Build</h3>
+      <p>The chassis visible in the photo is cut and glued foam board — light, cheap, easy to re-cut when a sensor needed repositioning, and forgiving of the mistakes that come with a first hardware iteration. The visible tangle of jumper wires reflects a breadboard-first electronics approach: every signal line from the servos, ultrasonic sensors, and smoke sensor runs directly to the ESP32's GPIO headers rather than through a custom-etched board, which made debugging a matter of literally tracing a wire rather than probing hidden PCB traces. The onboard blue LED served as a simple status indicator during testing — on when the Wi-Fi access point was live and accepting connections.</p>
       <div class="callout">The decision to serve the control interface directly from the ESP32, instead of building a separate mobile app, was a conscious trade of polish for reliability — in a disaster-response context, a system that works from any browser without installation is more valuable than one that looks better but requires a specific app to be pre-installed on the responder's device.</div>
     </section>
 
@@ -96,7 +104,7 @@ void stepGait() {
     </section>
 
     <div class="article-nav">
-      <a href="./smart-water-management.html"><i class="fas fa-arrow-left"></i> Previous: Smart Water Management</a>
+      <a href="./janata-voice.html"><i class="fas fa-arrow-left"></i> Previous: Janata Voice</a>
       <a href="./traffic-system-design.html">Next: Traffic Violation System Design <i class="fas fa-arrow-right"></i></a>
     </div>
   </article>
@@ -111,7 +119,7 @@ void stepGait() {
       document.body.classList.toggle("dark-mode", dark);
       icon.className = dark ? "fas fa-moon" : "fas fa-sun";
     }
-    applyTheme(localStorage.getItem("theme") === "dark");
+    applyTheme(localStorage.getItem("theme") !== "light");
     toggle.addEventListener("click", () => {
       const dark = !document.body.classList.contains("dark-mode");
       applyTheme(dark);

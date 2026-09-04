@@ -24,7 +24,7 @@
     <h1>Designing a Violation-Processing System: From Use Cases to a Working Pipeline</h1>
     <p class="article-dek">Behind the YOLOv8 model in the Smart Rider Monitoring &amp; Violation Detection System sits a full systems-engineering effort — use-case modeling, entity-relationship design, and data-flow diagrams that turned a computer-vision experiment into a system a traffic authority could actually operate.</p>
     <div class="article-meta">
-      <span>Computer Engineering, NCIT — Final Year Minor Project</span>
+      <span>Computer Engineering, NCIT — Minor Project</span>
       <span>UML · ER Modeling · Data Flow</span>
       <span>~8 min read</span>
     </div>
@@ -47,6 +47,10 @@
       <p>Modeling the system surfaced three distinct actors whose needs pulled the design in different directions: the automated detection engine (which needs speed and low false-positive rates), the traffic-authority reviewer (who needs an auditable trail and the ability to overrule the model), and the vehicle owner (who needs a clear, verifiable notice and a simple way to pay or contest a fine). The architecture that emerged has four layers built specifically to keep those three actors' concerns separated.</p>
       <h3>1. Detection &amp; Evidence Capture</h3>
       <p>The YOLOv8-based pipeline processes incoming video and, on a suspected violation, packages an evidence bundle: the annotated frame, a timestamp, the camera's registered location, the violation type, and a model confidence score. Critically, this layer never makes a final decision — it only proposes a case.</p>
+      <figure class="article-figure">
+        <img src="../projects/assets/traffic-detection.svg" alt="Illustrative diagram of a detection overlay: a no-helmet bounding box and a license-plate crop marker on a two-wheeler" loading="lazy" />
+        <figcaption>Illustrative mock-up of what a flagged frame's evidence overlay looks like — a real captured frame is not shown here for privacy reasons, since it would contain an identifiable license plate and rider.</figcaption>
+      </figure>
       <h3>2. Review &amp; Verification</h3>
       <p>Every proposed case lands in a queue on a reviewer-facing web dashboard before anything is sent to a vehicle owner. This step exists because the use-case modeling made it clear early on that an automated system issuing fines with zero human oversight was both a fairness problem and, practically, a false-positive liability. The ER model reflects this directly: a `Violation` entity has a status field (`pending_review`, `confirmed`, `rejected`) rather than being created in an already-final state.</p>
       <h3>3. Plate Resolution</h3>
@@ -122,7 +126,7 @@ Challan {
       document.body.classList.toggle("dark-mode", dark);
       icon.className = dark ? "fas fa-moon" : "fas fa-sun";
     }
-    applyTheme(localStorage.getItem("theme") === "dark");
+    applyTheme(localStorage.getItem("theme") !== "light");
     toggle.addEventListener("click", () => {
       const dark = !document.body.classList.contains("dark-mode");
       applyTheme(dark);

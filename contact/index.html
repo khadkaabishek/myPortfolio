@@ -88,7 +88,11 @@
 
   <script>
     (function () {
-      emailjs.init("q_5jUEeH6Y2MU51hP");
+      if (typeof emailjs !== "undefined") {
+        emailjs.init("q_5jUEeH6Y2MU51hP");
+      } else {
+        console.warn("EmailJS failed to load — the contact form will show an error if submitted, but the rest of the page still works.");
+      }
     })();
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -96,6 +100,14 @@
       const status = document.getElementById("c-form-status");
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+        if (typeof emailjs === "undefined") {
+          status.textContent = "Sorry, the message service didn't load. Please email me directly at abishekkhadka36@gmail.com";
+          status.style.backgroundColor = "#f8d7da";
+          status.style.color = "#721c24";
+          status.style.border = "1px solid #f5c6cb";
+          status.style.display = "block";
+          return;
+        }
         const formData = {
           name: document.getElementById("c-name").value,
           email: document.getElementById("c-email").value,
@@ -137,7 +149,7 @@
       document.body.classList.toggle("dark-mode", dark);
       icon.className = dark ? "fas fa-moon" : "fas fa-sun";
     }
-    applyTheme(localStorage.getItem("theme") === "dark");
+    applyTheme(localStorage.getItem("theme") !== "light");
     toggle.addEventListener("click", () => {
       const dark = !document.body.classList.contains("dark-mode");
       applyTheme(dark);
