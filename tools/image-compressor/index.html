@@ -1,72 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Image Compressor | Abishek Khadka</title>
-<meta name="description" content="Compress JPG, PNG, and WebP images in your browser with an adjustable quality slider. No upload, no server — everything happens locally." />
-<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="../tools.css" />
-<link rel="stylesheet" href="../../site-enhancements.css" />
-</head>
+<meta content="Compress JPG, PNG, and WebP images in your browser with an adjustable quality slider. No upload, no server — everything happens locally." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/tools/image-compressor/" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="website" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="Image Compressor | Abishek Khadka" property="og:title"/><meta content="Compress JPG, PNG, and WebP images in your browser with an adjustable quality slider. No upload, no server — everything happens locally." property="og:description"/><meta content="https://www.abishek-khadka.com.np/tools/image-compressor/" property="og:url"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Image Compressor | Abishek Khadka" name="twitter:title"/><meta content="Compress JPG, PNG, and WebP images in your browser with an adjustable quality slider. No upload, no server — everything happens locally." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" name="twitter:image"/>
+<link href="../../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="../tools.css" rel="stylesheet"/>
+<link href="../../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Compressor",
+  "url": "https://www.abishek-khadka.com.np/tools/image-compressor/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.abishek-khadka.com.np/"
+  }
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.abishek-khadka.com.np/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Useful Tools",
+      "item": "https://www.abishek-khadka.com.np/Useful_tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Image Compressor",
+      "item": "https://www.abishek-khadka.com.np/tools/image-compressor/"
+    }
+  ]
+}</script></head>
 <body class="tools-page">
-  <div class="content-topbar">
-    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="content-topbar-actions">
-      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
-      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <div class="tool-shell">
-    <div class="tool-eyebrow">Image Tools</div>
-    <h1>Image Compressor</h1>
-    <p class="tool-dek">Drop in a JPG, PNG, or WebP image and reduce its file size with an adjustable quality slider. Compression runs entirely in your browser using the Canvas API.</p>
-
-    <div class="privacy-note"><i class="fas fa-lock"></i> Your image never leaves this device — everything is processed locally in your browser.</div>
-
-    <div class="tool-panel">
-      <label class="dropzone" id="dropzone">
-        <i class="fas fa-cloud-upload-alt dz-icon"></i>
-        <div><strong>Click to choose an image</strong> or drag and drop it here</div>
-        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" />
-      </label>
-
-      <div id="controls" style="display:none; margin-top:22px;">
-        <div class="form-row">
-          <label for="quality">Quality: <span id="qualityValue">80</span>%</label>
-          <input type="range" id="quality" min="10" max="100" value="80" />
-        </div>
-        <div class="form-row">
-          <label for="outFormat">Output format</label>
-          <select id="outFormat">
-            <option value="image/jpeg">JPEG</option>
-            <option value="image/webp">WebP</option>
-            <option value="image/png">PNG (lossless — quality slider has no effect)</option>
-          </select>
-        </div>
-        <div class="btn-row">
-          <button class="btn" id="compressBtn"><i class="fas fa-compress"></i> Compress</button>
-          <a class="btn secondary" id="downloadBtn" style="display:none;" download="compressed-image.jpg"><i class="fas fa-download"></i> Download</a>
-        </div>
-      </div>
-
-      <div class="result-box" id="resultBox" style="display:none;">
-        <img id="previewImg" class="preview-img" alt="Compressed preview" />
-        <div class="stat-row">
-          <div class="stat-box"><span class="num" id="origSize">–</span><span class="label">Original</span></div>
-          <div class="stat-box"><span class="num" id="newSize">–</span><span class="label">Compressed</span></div>
-          <div class="stat-box"><span class="num" id="savedPct">–</span><span class="label">Saved</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <canvas id="workCanvas" style="display:none;"></canvas>
-
-  <script>
+<div class="content-topbar">
+<a class="content-brand" href="../../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="content-topbar-actions">
+<a class="content-back" href="../../Useful_tools.html"><i class="fas fa-arrow-left"></i> All Tools</a>
+<button class="content-theme-toggle" id="themeToggleContent"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<div class="tool-shell">
+<div class="tool-eyebrow">Image Tools</div>
+<h1>Image Compressor</h1>
+<p class="tool-dek">Drop in a JPG, PNG, or WebP image and reduce its file size with an adjustable quality slider. Compression runs entirely in your browser using the Canvas API.</p>
+<div class="privacy-note"><i class="fas fa-lock"></i> Your image never leaves this device — everything is processed locally in your browser.</div>
+<div class="tool-panel">
+<label class="dropzone" id="dropzone">
+<i class="fas fa-cloud-upload-alt dz-icon"></i>
+<div><strong>Click to choose an image</strong> or drag and drop it here</div>
+<input accept="image/png,image/jpeg,image/webp" id="fileInput" type="file"/>
+</label>
+<div id="controls" style="display:none; margin-top:22px;">
+<div class="form-row">
+<label for="quality">Quality: <span id="qualityValue">80</span>%</label>
+<input id="quality" max="100" min="10" type="range" value="80"/>
+</div>
+<div class="form-row">
+<label for="outFormat">Output format</label>
+<select id="outFormat">
+<option value="image/jpeg">JPEG</option>
+<option value="image/webp">WebP</option>
+<option value="image/png">PNG (lossless — quality slider has no effect)</option>
+</select>
+</div>
+<div class="btn-row">
+<button class="btn" id="compressBtn"><i class="fas fa-compress"></i> Compress</button>
+<a class="btn secondary" download="compressed-image.jpg" id="downloadBtn" style="display:none;"><i class="fas fa-download"></i> Download</a>
+</div>
+</div>
+<div class="result-box" id="resultBox" style="display:none;">
+<img alt="Compressed preview" class="preview-img" id="previewImg"/>
+<div class="stat-row">
+<div class="stat-box"><span class="num" id="origSize">–</span><span class="label">Original</span></div>
+<div class="stat-box"><span class="num" id="newSize">–</span><span class="label">Compressed</span></div>
+<div class="stat-box"><span class="num" id="savedPct">–</span><span class="label">Saved</span></div>
+</div>
+</div>
+</div>
+</div>
+<canvas id="workCanvas" style="display:none;"></canvas>
+<script>
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileInput');
     const controls = document.getElementById('controls');

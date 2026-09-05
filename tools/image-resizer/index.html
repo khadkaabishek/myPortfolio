@@ -1,89 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Image Resizer | Abishek Khadka</title>
-<meta name="description" content="Resize images by exact pixel dimensions or percentage, with optional aspect-ratio lock. Runs entirely in your browser." />
-<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="../tools.css" />
-<link rel="stylesheet" href="../../site-enhancements.css" />
-</head>
+<meta content="Resize images by exact pixel dimensions or percentage, with optional aspect-ratio lock. Runs entirely in your browser." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/tools/image-resizer/" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="website" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="Image Resizer | Abishek Khadka" property="og:title"/><meta content="Resize images by exact pixel dimensions or percentage, with optional aspect-ratio lock. Runs entirely in your browser." property="og:description"/><meta content="https://www.abishek-khadka.com.np/tools/image-resizer/" property="og:url"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Image Resizer | Abishek Khadka" name="twitter:title"/><meta content="Resize images by exact pixel dimensions or percentage, with optional aspect-ratio lock. Runs entirely in your browser." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" name="twitter:image"/>
+<link href="../../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="../tools.css" rel="stylesheet"/>
+<link href="../../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Resizer",
+  "url": "https://www.abishek-khadka.com.np/tools/image-resizer/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.abishek-khadka.com.np/"
+  }
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.abishek-khadka.com.np/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Useful Tools",
+      "item": "https://www.abishek-khadka.com.np/Useful_tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Image Resizer",
+      "item": "https://www.abishek-khadka.com.np/tools/image-resizer/"
+    }
+  ]
+}</script></head>
 <body class="tools-page">
-  <div class="content-topbar">
-    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="content-topbar-actions">
-      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
-      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <div class="tool-shell">
-    <div class="tool-eyebrow">Image Tools</div>
-    <h1>Image Resizer</h1>
-    <p class="tool-dek">Resize an image to exact pixel dimensions or by percentage, with an option to lock the aspect ratio so nothing gets stretched.</p>
-
-    <div class="privacy-note"><i class="fas fa-lock"></i> Your image never leaves this device — everything is processed locally in your browser.</div>
-
-    <div class="tool-panel">
-      <label class="dropzone" id="dropzone">
-        <i class="fas fa-cloud-upload-alt dz-icon"></i>
-        <div><strong>Click to choose an image</strong> or drag and drop it here</div>
-        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" />
-      </label>
-
-      <div id="controls" style="display:none; margin-top:22px;">
-        <div class="form-row">
-          <label>Resize mode</label>
-          <select id="mode">
-            <option value="pixels">Exact dimensions (px)</option>
-            <option value="percent">Percentage of original</option>
-          </select>
-        </div>
-
-        <div id="pixelFields" class="form-row-inline">
-          <div class="form-row">
-            <label for="widthInput">Width (px)</label>
-            <input type="number" id="widthInput" min="1" />
-          </div>
-          <div class="form-row">
-            <label for="heightInput">Height (px)</label>
-            <input type="number" id="heightInput" min="1" />
-          </div>
-        </div>
-
-        <div id="percentFields" class="form-row" style="display:none;">
-          <label for="percentInput">Percentage: <span id="percentValue">100</span>%</label>
-          <input type="range" id="percentInput" min="1" max="200" value="100" />
-        </div>
-
-        <div class="form-row">
-          <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
-            <input type="checkbox" id="lockAspect" checked style="width:auto;" /> Lock aspect ratio
+<div class="content-topbar">
+<a class="content-brand" href="../../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="content-topbar-actions">
+<a class="content-back" href="../../Useful_tools.html"><i class="fas fa-arrow-left"></i> All Tools</a>
+<button class="content-theme-toggle" id="themeToggleContent"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<div class="tool-shell">
+<div class="tool-eyebrow">Image Tools</div>
+<h1>Image Resizer</h1>
+<p class="tool-dek">Resize an image to exact pixel dimensions or by percentage, with an option to lock the aspect ratio so nothing gets stretched.</p>
+<div class="privacy-note"><i class="fas fa-lock"></i> Your image never leaves this device — everything is processed locally in your browser.</div>
+<div class="tool-panel">
+<label class="dropzone" id="dropzone">
+<i class="fas fa-cloud-upload-alt dz-icon"></i>
+<div><strong>Click to choose an image</strong> or drag and drop it here</div>
+<input accept="image/png,image/jpeg,image/webp" id="fileInput" type="file"/>
+</label>
+<div id="controls" style="display:none; margin-top:22px;">
+<div class="form-row">
+<label>Resize mode</label>
+<select id="mode">
+<option value="pixels">Exact dimensions (px)</option>
+<option value="percent">Percentage of original</option>
+</select>
+</div>
+<div class="form-row-inline" id="pixelFields">
+<div class="form-row">
+<label for="widthInput">Width (px)</label>
+<input id="widthInput" min="1" type="number"/>
+</div>
+<div class="form-row">
+<label for="heightInput">Height (px)</label>
+<input id="heightInput" min="1" type="number"/>
+</div>
+</div>
+<div class="form-row" id="percentFields" style="display:none;">
+<label for="percentInput">Percentage: <span id="percentValue">100</span>%</label>
+<input id="percentInput" max="200" min="1" type="range" value="100"/>
+</div>
+<div class="form-row">
+<label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+<input checked="" id="lockAspect" style="width:auto;" type="checkbox"/> Lock aspect ratio
           </label>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn" id="resizeBtn"><i class="fas fa-expand"></i> Resize</button>
-          <a class="btn secondary" id="downloadBtn" style="display:none;" download="resized-image.png"><i class="fas fa-download"></i> Download</a>
-        </div>
-      </div>
-
-      <div class="result-box" id="resultBox" style="display:none;">
-        <img id="previewImg" class="preview-img" alt="Resized preview" />
-        <div class="stat-row">
-          <div class="stat-box"><span class="num" id="origDims">–</span><span class="label">Original</span></div>
-          <div class="stat-box"><span class="num" id="newDims">–</span><span class="label">New size</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <canvas id="workCanvas" style="display:none;"></canvas>
-
-  <script>
+</div>
+<div class="btn-row">
+<button class="btn" id="resizeBtn"><i class="fas fa-expand"></i> Resize</button>
+<a class="btn secondary" download="resized-image.png" id="downloadBtn" style="display:none;"><i class="fas fa-download"></i> Download</a>
+</div>
+</div>
+<div class="result-box" id="resultBox" style="display:none;">
+<img alt="Resized preview" class="preview-img" id="previewImg"/>
+<div class="stat-row">
+<div class="stat-box"><span class="num" id="origDims">–</span><span class="label">Original</span></div>
+<div class="stat-box"><span class="num" id="newDims">–</span><span class="label">New size</span></div>
+</div>
+</div>
+</div>
+</div>
+<canvas id="workCanvas" style="display:none;"></canvas>
+<script>
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileInput');
     const controls = document.getElementById('controls');

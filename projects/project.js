@@ -8,6 +8,52 @@ const project = PROJECTS.find((p) => p.id === slug) || PROJECTS[0];
 document.title = `${project.title} | Abishek Khadka`;
 document.getElementById("pageDesc").setAttribute("content", project.tagline);
 
+// ---------- SEO: canonical / Open Graph / Twitter Card / JSON-LD ----------
+// project.html is a single template rendered per ?p=slug, so search engines
+// and social previews need these set per-project at runtime rather than
+// once in the static <head>.
+(function seoForProject() {
+  const SITE = "https://www.abishek-khadka.com.np";
+  const pageUrl = `${SITE}/projects/project.html?p=${encodeURIComponent(project.id)}`;
+  const imageUrl = new URL(project.thumbnail, window.location.href).href;
+
+  document.getElementById("pageCanonical").setAttribute("href", pageUrl);
+  document.getElementById("ogTitle").setAttribute("content", `${project.title} | Abishek Khadka`);
+  document.getElementById("ogDesc").setAttribute("content", project.tagline);
+  document.getElementById("ogUrl").setAttribute("content", pageUrl);
+  document.getElementById("ogImage").setAttribute("content", imageUrl);
+  document.getElementById("twTitle").setAttribute("content", `${project.title} | Abishek Khadka`);
+  document.getElementById("twDesc").setAttribute("content", project.tagline);
+  document.getElementById("twImage").setAttribute("content", imageUrl);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": project.title,
+    "description": project.tagline,
+    "image": imageUrl,
+    "url": pageUrl,
+    "author": { "@type": "Person", "name": "Abishek Khadka", "url": `${SITE}/` },
+    "keywords": (project.tech || []).join(", "),
+    "codeRepository": project.github || undefined,
+  };
+  document.getElementById("jsonLdProject").textContent = JSON.stringify(jsonLd, null, 2);
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE}/` },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${SITE}/projects/` },
+      { "@type": "ListItem", "position": 3, "name": project.title, "item": pageUrl },
+    ],
+  };
+  const breadcrumbScript = document.createElement("script");
+  breadcrumbScript.type = "application/ld+json";
+  breadcrumbScript.textContent = JSON.stringify(breadcrumb, null, 2);
+  document.head.appendChild(breadcrumbScript);
+})();
+
 const wrap = document.getElementById("detailWrap");
 
 wrap.innerHTML = `

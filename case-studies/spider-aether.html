@@ -1,83 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>SPIDER: THE AETHER — Autonomous Disaster Response Robotics Case Study | Abishek Khadka</title>
-<meta name="description" content="How a four-legged ESP32-driven robot was designed for search-and-assist scenarios in disaster zones, covering leg kinematics, sensor fusion, and wireless control architecture." />
-<link rel="icon" type="image/png" href="../Assets/letter-a.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="./content.css" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../site-enhancements.css" />
-</head>
+<meta content="How a four-legged ESP32-driven robot was designed for search-and-assist scenarios in disaster zones, covering leg kinematics, sensor fusion, and wireless control architecture." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/case-studies/spider-aether.html" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="article" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="SPIDER: THE AETHER — Autonomous Disaster Response Robotics Case Study | Abishek Khadka" property="og:title"/><meta content="How a four-legged ESP32-driven robot was designed for search-and-assist scenarios in disaster zones, covering leg kinematics, sensor fusion, and wireless control architecture." property="og:description"/><meta content="https://www.abishek-khadka.com.np/case-studies/spider-aether.html" property="og:url"/><meta content="https://www.abishek-khadka.com.np/projects/assets/spyder-robot.jpeg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="SPIDER: THE AETHER — Autonomous Disaster Response Robotics Case Study | Abishek Khadka" name="twitter:title"/><meta content="How a four-legged ESP32-driven robot was designed for search-and-assist scenarios in disaster zones, covering leg kinematics, sensor fusion, and wireless control architecture." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/projects/assets/spyder-robot.jpeg" name="twitter:image"/>
+<link href="../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="./content.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656"></script>
+<link href="../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.abishek-khadka.com.np/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Case Studies",
+      "item": "https://www.abishek-khadka.com.np/case-studies/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Spider: The Aether",
+      "item": "https://www.abishek-khadka.com.np/case-studies/spider-aether.html"
+    }
+  ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SPIDER: THE AETHER \u2014 Autonomous Disaster Response Robotics Case Study",
+  "description": "How a four-legged ESP32-driven robot was designed for search-and-assist scenarios in disaster zones, covering leg kinematics, sensor fusion, and wireless control architecture.",
+  "image": "https://www.abishek-khadka.com.np/projects/assets/spyder-robot.jpeg",
+  "url": "https://www.abishek-khadka.com.np/case-studies/spider-aether.html",
+  "author": {
+    "@type": "Person",
+    "name": "Abishek Khadka",
+    "url": "https://www.abishek-khadka.com.np/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Abishek Khadka"
+  },
+  "mainEntityOfPage": "https://www.abishek-khadka.com.np/case-studies/spider-aether.html"
+}</script></head>
 <body class="content-page">
-  <div class="content-topbar">
-    <a href="../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="content-topbar-actions">
-      <a href="./index.html" class="content-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
-      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <article class="article">
-    <div class="article-eyebrow">Case Study — Robotics & Embedded Systems</div>
-    <h1>SPIDER: THE AETHER — A Four-Legged Platform for Disaster-Zone Reconnaissance</h1>
-    <p class="article-dek">A spider-legged robot built to go where wheeled robots can't — over rubble, uneven ground, and tight gaps — controlled wirelessly from a browser-based interface served directly off the robot's own ESP32.</p>
-    <div class="article-meta">
-      <span>Computer Engineering, NCIT</span>
-      <span>ESP32 · Servo Kinematics · Wi-Fi</span>
-      <span>~9 min read</span>
-    </div>
-    <div class="article-tags">
-      <span class="tag">ESP32</span>
-      <span class="tag">Servo Motors</span>
-      <span class="tag">Ultrasonic Sensing</span>
-      <span class="tag">Embedded C++</span>
-      <span class="tag">Robotics</span>
-    </div>
-
-    <figure class="article-hero-img">
-      <img src="../projects/assets/spyder-robot.jpeg" alt="The SPIDER: THE AETHER prototype — a foam-board chassis with exposed wiring, twin ultrasonic sensors, and four servo-driven legs" loading="lazy" />
-    </figure>
-    <p class="article-dek" style="font-size:0.85rem; margin-top:-24px; color:var(--ink-dim);">The actual prototype: a foam-board chassis, hand-wired breadboard electronics, and four servo legs — built to prove the locomotion and control concept, not to look production-ready.</p>
-
-    <section>
-      <h2>Overview</h2>
-      <p>After a disaster — an earthquake, a building collapse, a landslide — the terrain that first responders need to search is often exactly the terrain that wheeled or tracked robots handle worst: rubble piles, narrow voids, unstable footing. SPIDER: THE AETHER started as a direct response to that gap. It's a legged robot rather than a wheeled one, on the premise that a machine that walks can pick individual footholds the way a person or animal would, instead of needing continuous rollable ground. The current build is a proof-of-concept: four independently driven legs, an onboard sensor suite for obstacle and hazard awareness, and a Wi-Fi control link so an operator can drive it from a safe distance using nothing more than a phone or laptop browser.</p>
-      <p>The project name reflects its intended niche deliberately — "AETHER" as in operating in the open, unstructured air of a disaster site rather than a controlled lab floor — and the "spider" framing points at the core engineering bet: multi-legged locomotion trades some speed for the ability to traverse ground that would stop a wheeled platform outright.</p>
-      <p>As the photo above shows, this is deliberately a proof-of-concept build rather than a finished product: the chassis is foam board rather than a machined or 3D-printed shell, and the electronics are hand-wired on breadboard-style connections rather than a custom PCB. That was a conscious choice — at the prototype stage, the goal was to validate the gait, the sensing, and the wireless control loop as cheaply and quickly as possible, with the enclosure and wiring harness treated as a later-stage problem once the core mechanism was proven out.</p>
-    </section>
-
-    <section>
-      <h2>System Architecture</h2>
-      <p>The robot's architecture is deliberately centralized around the ESP32, both because it needed to be built and debugged by a small student team, and because a single microcontroller with built-in Wi-Fi removes an entire class of communication problems that come from splitting a robot's logic across multiple boards.</p>
-      <h3>1. Locomotion Layer</h3>
-      <p>Four servo motors — one per leg — are driven by the ESP32's PWM channels through a dedicated servo driver, with each leg's motion defined as a small lookup sequence of angles that together produce a walking gait. Turning is achieved by biasing the gait asymmetrically between the left and right leg pairs rather than needing a separate steering mechanism.</p>
-      <h3>2. Sensing Layer</h3>
-      <p>Two ultrasonic distance sensors, mounted front and rear, give the robot basic obstacle awareness so an operator (or, eventually, an autonomous routine) can detect a wall or rubble edge before driving into it. A smoke/gas sensor is also onboard, repurposing the same telemetry channel to give early warning of hazardous air — directly relevant to a disaster-response use case where smoke or gas leaks are a real risk to human responders following behind the robot.</p>
-      <h3>3. Control Layer</h3>
-      <p>Rather than requiring a companion app, the ESP32 runs a lightweight embedded web server and serves a control page directly over its own Wi-Fi access point. An operator connects to the robot's network, opens the page in any browser, and sends movement and sensor-poll commands over simple HTTP requests. This "robot serves its own UI" pattern removes an entire dependency (no app store, no pairing flow, no OS-specific client) at the cost of a slightly less polished interface than a native app would offer.</p>
-      <h3>4. Physical Build</h3>
-      <p>The chassis visible in the photo is cut and glued foam board — light, cheap, easy to re-cut when a sensor needed repositioning, and forgiving of the mistakes that come with a first hardware iteration. The visible tangle of jumper wires reflects a breadboard-first electronics approach: every signal line from the servos, ultrasonic sensors, and smoke sensor runs directly to the ESP32's GPIO headers rather than through a custom-etched board, which made debugging a matter of literally tracing a wire rather than probing hidden PCB traces. The onboard blue LED served as a simple status indicator during testing — on when the Wi-Fi access point was live and accepting connections.</p>
-      <div class="callout">The decision to serve the control interface directly from the ESP32, instead of building a separate mobile app, was a conscious trade of polish for reliability — in a disaster-response context, a system that works from any browser without installation is more valuable than one that looks better but requires a specific app to be pre-installed on the responder's device.</div>
-    </section>
-
-    <section>
-      <h2>Technical Challenges Overcome</h2>
-      <ul>
-        <li><strong>Gait stability on four legs:</strong> Four-legged locomotion is inherently less statically stable than six-legged (hexapod) designs, since fewer legs are on the ground at any instant. The team tuned the gait sequence so that at least two diagonally opposite legs remain planted at all times, which noticeably improved stability on uneven surfaces during testing.</li>
-        <li><strong>Servo current draw browning out the Wi-Fi radio:</strong> Driving four servos simultaneously from the same supply rail as the ESP32 caused voltage sags that intermittently reset the Wi-Fi connection. Separating the servo power rail from the logic rail, with a shared ground and a large enough bulk capacitor near the servos, resolved the brownouts.</li>
-        <li><strong>Command latency over Wi-Fi:</strong> Sending a new HTTP request for every single movement command introduced noticeable lag. Batching short movement sequences into a single request, rather than one request per step, cut perceived latency significantly.</li>
-        <li><strong>Sensor cross-talk:</strong> With two ultrasonic sensors mounted close together, one sensor's outgoing pulse would sometimes trigger the other's echo detector. Staggering the sensors' polling in time, rather than firing them simultaneously, eliminated the false readings this caused.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Key Code / Hardware Components</h2>
-      <p>The gait engine is structured as a small state machine that steps through predefined leg-angle keyframes rather than computing inverse kinematics on the fly — a deliberate simplification that keeps the ESP32's control loop fast and predictable:</p>
-      <pre><code>const int gaitSequence[4][4] = {
+<div class="content-topbar">
+<a class="content-brand" href="../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="content-topbar-actions">
+<a class="content-back" href="./index.html"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+<button class="content-theme-toggle" id="themeToggleContent"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<article class="article">
+<div class="article-eyebrow">Case Study — Robotics &amp; Embedded Systems</div>
+<h1>SPIDER: THE AETHER — A Four-Legged Platform for Disaster-Zone Reconnaissance</h1>
+<p class="article-dek">A spider-legged robot built to go where wheeled robots can't — over rubble, uneven ground, and tight gaps — controlled wirelessly from a browser-based interface served directly off the robot's own ESP32.</p>
+<div class="article-meta">
+<span>Computer Engineering, NCIT</span>
+<span>ESP32 · Servo Kinematics · Wi-Fi</span>
+<span>~9 min read</span>
+</div>
+<div class="article-tags">
+<span class="tag">ESP32</span>
+<span class="tag">Servo Motors</span>
+<span class="tag">Ultrasonic Sensing</span>
+<span class="tag">Embedded C++</span>
+<span class="tag">Robotics</span>
+</div>
+<figure class="article-hero-img">
+<img alt="The SPIDER: THE AETHER prototype — a foam-board chassis with exposed wiring, twin ultrasonic sensors, and four servo-driven legs" loading="lazy" src="../projects/assets/spyder-robot.jpeg"/>
+</figure>
+<p class="article-dek" style="font-size:0.85rem; margin-top:-24px; color:var(--ink-dim);">The actual prototype: a foam-board chassis, hand-wired breadboard electronics, and four servo legs — built to prove the locomotion and control concept, not to look production-ready.</p>
+<section>
+<h2>Overview</h2>
+<p>After a disaster — an earthquake, a building collapse, a landslide — the terrain that first responders need to search is often exactly the terrain that wheeled or tracked robots handle worst: rubble piles, narrow voids, unstable footing. SPIDER: THE AETHER started as a direct response to that gap. It's a legged robot rather than a wheeled one, on the premise that a machine that walks can pick individual footholds the way a person or animal would, instead of needing continuous rollable ground. The current build is a proof-of-concept: four independently driven legs, an onboard sensor suite for obstacle and hazard awareness, and a Wi-Fi control link so an operator can drive it from a safe distance using nothing more than a phone or laptop browser.</p>
+<p>The project name reflects its intended niche deliberately — "AETHER" as in operating in the open, unstructured air of a disaster site rather than a controlled lab floor — and the "spider" framing points at the core engineering bet: multi-legged locomotion trades some speed for the ability to traverse ground that would stop a wheeled platform outright.</p>
+<p>As the photo above shows, this is deliberately a proof-of-concept build rather than a finished product: the chassis is foam board rather than a machined or 3D-printed shell, and the electronics are hand-wired on breadboard-style connections rather than a custom PCB. That was a conscious choice — at the prototype stage, the goal was to validate the gait, the sensing, and the wireless control loop as cheaply and quickly as possible, with the enclosure and wiring harness treated as a later-stage problem once the core mechanism was proven out.</p>
+</section>
+<section>
+<h2>System Architecture</h2>
+<p>The robot's architecture is deliberately centralized around the ESP32, both because it needed to be built and debugged by a small student team, and because a single microcontroller with built-in Wi-Fi removes an entire class of communication problems that come from splitting a robot's logic across multiple boards.</p>
+<h3>1. Locomotion Layer</h3>
+<p>Four servo motors — one per leg — are driven by the ESP32's PWM channels through a dedicated servo driver, with each leg's motion defined as a small lookup sequence of angles that together produce a walking gait. Turning is achieved by biasing the gait asymmetrically between the left and right leg pairs rather than needing a separate steering mechanism.</p>
+<h3>2. Sensing Layer</h3>
+<p>Two ultrasonic distance sensors, mounted front and rear, give the robot basic obstacle awareness so an operator (or, eventually, an autonomous routine) can detect a wall or rubble edge before driving into it. A smoke/gas sensor is also onboard, repurposing the same telemetry channel to give early warning of hazardous air — directly relevant to a disaster-response use case where smoke or gas leaks are a real risk to human responders following behind the robot.</p>
+<h3>3. Control Layer</h3>
+<p>Rather than requiring a companion app, the ESP32 runs a lightweight embedded web server and serves a control page directly over its own Wi-Fi access point. An operator connects to the robot's network, opens the page in any browser, and sends movement and sensor-poll commands over simple HTTP requests. This "robot serves its own UI" pattern removes an entire dependency (no app store, no pairing flow, no OS-specific client) at the cost of a slightly less polished interface than a native app would offer.</p>
+<h3>4. Physical Build</h3>
+<p>The chassis visible in the photo is cut and glued foam board — light, cheap, easy to re-cut when a sensor needed repositioning, and forgiving of the mistakes that come with a first hardware iteration. The visible tangle of jumper wires reflects a breadboard-first electronics approach: every signal line from the servos, ultrasonic sensors, and smoke sensor runs directly to the ESP32's GPIO headers rather than through a custom-etched board, which made debugging a matter of literally tracing a wire rather than probing hidden PCB traces. The onboard blue LED served as a simple status indicator during testing — on when the Wi-Fi access point was live and accepting connections.</p>
+<div class="callout">The decision to serve the control interface directly from the ESP32, instead of building a separate mobile app, was a conscious trade of polish for reliability — in a disaster-response context, a system that works from any browser without installation is more valuable than one that looks better but requires a specific app to be pre-installed on the responder's device.</div>
+</section>
+<section>
+<h2>Technical Challenges Overcome</h2>
+<ul>
+<li><strong>Gait stability on four legs:</strong> Four-legged locomotion is inherently less statically stable than six-legged (hexapod) designs, since fewer legs are on the ground at any instant. The team tuned the gait sequence so that at least two diagonally opposite legs remain planted at all times, which noticeably improved stability on uneven surfaces during testing.</li>
+<li><strong>Servo current draw browning out the Wi-Fi radio:</strong> Driving four servos simultaneously from the same supply rail as the ESP32 caused voltage sags that intermittently reset the Wi-Fi connection. Separating the servo power rail from the logic rail, with a shared ground and a large enough bulk capacitor near the servos, resolved the brownouts.</li>
+<li><strong>Command latency over Wi-Fi:</strong> Sending a new HTTP request for every single movement command introduced noticeable lag. Batching short movement sequences into a single request, rather than one request per step, cut perceived latency significantly.</li>
+<li><strong>Sensor cross-talk:</strong> With two ultrasonic sensors mounted close together, one sensor's outgoing pulse would sometimes trigger the other's echo detector. Staggering the sensors' polling in time, rather than firing them simultaneously, eliminated the false readings this caused.</li>
+</ul>
+</section>
+<section>
+<h2>Key Code / Hardware Components</h2>
+<p>The gait engine is structured as a small state machine that steps through predefined leg-angle keyframes rather than computing inverse kinematics on the fly — a deliberate simplification that keeps the ESP32's control loop fast and predictable:</p>
+<pre><code>const int gaitSequence[4][4] = {
   // {frontLeft, frontRight, backLeft, backRight} angles per phase
   {90, 60, 60, 90},
   {60, 90, 90, 60},
@@ -87,34 +121,30 @@
 
 void stepGait() {
   static int phase = 0;
-  for (int leg = 0; leg < 4; leg++) {
+  for (int leg = 0; leg &lt; 4; leg++) {
     legServo[leg].write(gaitSequence[phase][leg]);
   }
   phase = (phase + 1) % 4;
 }</code></pre>
-      <p>On the hardware side, the build centers on an ESP32 DevKit as the sole controller, four standard hobby servo motors for the legs, an HC-SR04 ultrasonic sensor pair for front/rear obstacle sensing, an MQ-series smoke sensor for hazard detection, and a separate battery pack for the servo rail to keep locomotion power isolated from the logic and radio supply.</p>
-    </section>
-
-    <!-- Ad slot -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle" style="display:block; width:100%;" data-ad-client="ca-pub-7467274697628656" data-ad-slot="0000000011" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    </div>
-
-    <section>
-      <h2>Key Takeaways</h2>
-      <p>SPIDER: THE AETHER was as much a lesson in power-system discipline as it was in robotics. It's tempting, especially on a student budget, to run every actuator and every microcontroller off one shared rail — but this project made it very concrete that mechanical actuation and radio communication compete for the same electrical headroom, and that competition shows up as mysterious, hard-to-reproduce bugs rather than a clean failure. It also reinforced the value of serving a robot's control interface directly from its own onboard web server: a solution that trades some visual polish for zero installation friction is often the right call for anything meant to be operated in the field, under time pressure, by someone who has never touched the system before.</p>
-    </section>
-
-    <div class="article-nav">
-      <a href="./janata-voice.html"><i class="fas fa-arrow-left"></i> Previous: Janata Voice</a>
-      <a href="./traffic-system-design.html">Next: Traffic Violation System Design <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </article>
-
-  <script>
+<p>On the hardware side, the build centers on an ESP32 DevKit as the sole controller, four standard hobby servo motors for the legs, an HC-SR04 ultrasonic sensor pair for front/rear obstacle sensing, an MQ-series smoke sensor for hazard detection, and a separate battery pack for the servo rail to keep locomotion power isolated from the logic and radio supply.</p>
+</section>
+<!-- Ad slot -->
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-7467274697628656" data-ad-format="auto" data-ad-slot="0000000011" data-full-width-responsive="true" style="display:block; width:100%;"></ins>
+</div>
+<section>
+<h2>Key Takeaways</h2>
+<p>SPIDER: THE AETHER was as much a lesson in power-system discipline as it was in robotics. It's tempting, especially on a student budget, to run every actuator and every microcontroller off one shared rail — but this project made it very concrete that mechanical actuation and radio communication compete for the same electrical headroom, and that competition shows up as mysterious, hard-to-reproduce bugs rather than a clean failure. It also reinforced the value of serving a robot's control interface directly from its own onboard web server: a solution that trades some visual polish for zero installation friction is often the right call for anything meant to be operated in the field, under time pressure, by someone who has never touched the system before.</p>
+</section>
+<div class="article-nav">
+<a href="./janata-voice.html"><i class="fas fa-arrow-left"></i> Previous: Janata Voice</a>
+<a href="./traffic-system-design.html">Next: Traffic Violation System Design <i class="fas fa-arrow-right"></i></a>
+</div>
+</article>
+<script>
     (window.adsbygoogle = window.adsbygoogle || []).push({});
   </script>
-  <script>
+<script>
     const toggle = document.getElementById("themeToggleContent");
     const icon = toggle.querySelector("i");
     function applyTheme(dark) {

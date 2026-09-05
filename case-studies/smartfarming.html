@@ -1,115 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>SmartFarming — An IoT Pipeline from Sensor to Dashboard | Abishek Khadka</title>
-<meta name="description" content="How an ESP32 sensor node, a PHP/MySQL ingestion layer, and a weighted k-NN crop recommender came together into an end-to-end smart farming system." />
-<link rel="icon" type="image/png" href="../Assets/letter-a.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="./content.css" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../site-enhancements.css" />
-</head>
+<meta content="How an ESP32 sensor node, a PHP/MySQL ingestion layer, and a weighted k-NN crop recommender came together into an end-to-end smart farming system." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/case-studies/smartfarming.html" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="article" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="SmartFarming — An IoT Pipeline from Sensor to Dashboard | Abishek Khadka" property="og:title"/><meta content="How an ESP32 sensor node, a PHP/MySQL ingestion layer, and a weighted k-NN crop recommender came together into an end-to-end smart farming system." property="og:description"/><meta content="https://www.abishek-khadka.com.np/case-studies/smartfarming.html" property="og:url"/><meta content="https://www.abishek-khadka.com.np/Project_Assets/smartfarmThumbnail.jpeg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="SmartFarming — An IoT Pipeline from Sensor to Dashboard | Abishek Khadka" name="twitter:title"/><meta content="How an ESP32 sensor node, a PHP/MySQL ingestion layer, and a weighted k-NN crop recommender came together into an end-to-end smart farming system." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/Project_Assets/smartfarmThumbnail.jpeg" name="twitter:image"/>
+<link href="../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="./content.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7467274697628656"></script>
+<link href="../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.abishek-khadka.com.np/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Case Studies",
+      "item": "https://www.abishek-khadka.com.np/case-studies/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "SmartFarming",
+      "item": "https://www.abishek-khadka.com.np/case-studies/smartfarming.html"
+    }
+  ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SmartFarming \u2014 An IoT Pipeline from Sensor to Dashboard",
+  "description": "How an ESP32 sensor node, a PHP/MySQL ingestion layer, and a weighted k-NN crop recommender came together into an end-to-end smart farming system.",
+  "image": "https://www.abishek-khadka.com.np/Project_Assets/smartfarmThumbnail.jpeg",
+  "url": "https://www.abishek-khadka.com.np/case-studies/smartfarming.html",
+  "author": {
+    "@type": "Person",
+    "name": "Abishek Khadka",
+    "url": "https://www.abishek-khadka.com.np/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Abishek Khadka"
+  },
+  "mainEntityOfPage": "https://www.abishek-khadka.com.np/case-studies/smartfarming.html"
+}</script></head>
 <body class="content-page">
-  <div class="content-topbar">
-    <a href="../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="content-topbar-actions">
-      <a href="./index.html" class="content-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
-      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <article class="article">
-    <div class="article-eyebrow">Case Study — IoT &amp; Applied Machine Learning</div>
-    <h1>SmartFarming: An End-to-End Pipeline from Sensor to Dashboard to Recommendation</h1>
-    <p class="article-dek">An ESP32 sensor node, a PHP/MySQL ingestion layer, a Flask-served rooftop dashboard, and a weighted k-NN crop recommender — four separately built pieces that had to agree on one thing: what a farmer actually needs to see.</p>
-    <div class="article-meta">
-      <span>Team Iterators — Noskathon</span>
-      <span>ESP32 · PHP/MySQL · Flask · scikit-learn</span>
-      <span>~8 min read</span>
-    </div>
-    <div class="article-tags">
-      <span class="tag">ESP32</span>
-      <span class="tag">IoT</span>
-      <span class="tag">PHP/MySQL</span>
-      <span class="tag">Flask</span>
-      <span class="tag">k-NN</span>
-      <span class="tag">scikit-learn</span>
-    </div>
-
-    <figure class="article-hero-img">
-      <img src="../Project_Assets/smartfarmThumbnail.jpeg" alt="Team Iterators' SmartFarming demo table at the Noskathon hackathon, showing the live dashboard, the weather-forecast panel, and the potted soil rig wired to the ESP32 sensor node" loading="lazy" />
-    </figure>
-    <p class="article-dek" style="font-size:0.85rem; margin-top:-24px; color:var(--ink-dim);">The actual demo setup at Noskathon: a potted soil sample wired to the DHT11/ESP32 sensor node on the right, with the live dashboard and landing page running on the two laptops.</p>
-
-    <section>
-      <h2>Overview</h2>
-      <p>SmartFarming set out to answer a deceptively simple question: what does a farmer actually want to look at? Not raw sensor voltages, and not a black-box AI verdict either — something in between. The system ended up as three connected layers built by the team at different points in the hackathon: a DHT11-based ESP32 node that reports temperature and humidity over Wi-Fi, a PHP/MySQL ingestion endpoint and a parallel Flask dashboard that render that data as something readable, and a k-nearest-neighbors crop recommender that turns soil and climate numbers into a ranked, confidence-scored suggestion of what to plant. None of these three pieces started out designed to fit together — they were built to solve separate parts of the same farming problem — which is exactly what made integrating them instructive.</p>
-      <p>The demo rig, shown above, was deliberately makeshift: a handful of soil in a plastic bowl standing in for a plot of farmland, with the DHT11 sensor and ESP32 taped together and wired straight into a breadboard rather than housed in any enclosure. Repurposed plastic cups held secondary probes during testing. None of that mattered for what the judges needed to see — the live dashboard on one laptop and the landing page on the other were pulling real numbers off that sensor in real time, which was the actual point of the demo.</p>
-    </section>
-
-    <section>
-      <h2>System Architecture</h2>
-      <h3>1. Sensor Layer — ESP32 + DHT11</h3>
-      <p>An ESP32 microcontroller reads temperature and humidity and posts them as a simple URL-encoded HTTP request to a PHP endpoint every loop cycle. The firmware keeps deliberately little logic on-device: it checks its own Wi-Fi connection state and reconnects if dropped, then fires a POST with the two readings as form fields. Almost all of the interesting behavior — validation, storage, and interpretation — was pushed off the microcontroller and onto the server, which kept the embedded code small enough to debug quickly under hackathon time pressure.</p>
-      <h3>2. Ingestion Layer — PHP + MySQL</h3>
-      <p>The receiving endpoint (<code>testdata.php</code>) is intentionally minimal: it opens a MySQLi connection, reads the posted <code>temperature</code> and <code>humidity</code> fields, and inserts them as a new row in a <code>dht11</code> table. There's no batching and no queue — each ESP32 request is a single synchronous insert — which is a reasonable trade for a single sensor node reporting at a slow, human-relevant cadence, though it's the first thing that would need to change if the system had to support many concurrent sensor nodes.</p>
-      <h3>3. Presentation Layer — Flask Dashboard</h3>
-      <p>A second, independently-built dashboard reads from a related MySQL table (<code>sensor_data</code>, covering moisture, pH, humidity, and temperature) and renders the most recent reading through a Flask route into a styled HTML template with circular gauges and a live temperature card. This dashboard also embeds a client-side call to the OpenWeatherMap forecast API, so a farmer sees both what their own sensors are reporting right now and what the next five days of weather are likely to bring — with a small rule-based advisory ("expect heavy rain — check drainage," "high average temperature — ensure adequate watering") generated from thresholds on rainfall, temperature, and wind speed in the forecast data.</p>
-      <h3>4. Recommendation Layer — Weighted k-NN Crop Advisor</h3>
-      <p>Separately from the live sensor path, a scikit-learn <code>NearestNeighbors</code> model trained on the standard Kaggle Crop Recommendation dataset (N, P, K, temperature, humidity, pH, rainfall → crop label) takes either manually entered or sensor-derived values and returns a ranked list of suitable crops. Rather than a plain majority vote among the nearest neighbors, each neighbor's vote is weighted by an inverse-distance score computed only over the input features that fall within a sane range for the dataset — so a slightly out-of-range pH reading doesn't get to dominate the vote the way it would in an unweighted scheme.</p>
-      <div class="stat-row">
-        <div class="stat-box"><span class="num">4</span><span class="label">architectural layers (sensor, ingestion, dashboard, ML)</span></div>
-        <div class="stat-box"><span class="num">10</span><span class="label">neighbors considered per crop prediction</span></div>
-        <div class="stat-box"><span class="num">7</span><span class="label">input features (N, P, K, temp, humidity, pH, rainfall)</span></div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Technical Challenges Overcome</h2>
-      <ul>
-        <li><strong>Treating "out of range" as a first-class input, not an error:</strong> Early testing showed that a single wildly-off sensor reading (a miscalibrated pH probe, for instance) could dominate a naive nearest-neighbor vote and produce a nonsensical crop suggestion. The fix was to compute a per-feature valid range from the training data itself and simply exclude out-of-range features from the confidence and distance calculations, rather than either rejecting the whole request or letting a bad reading silently poison the result.</li>
-        <li><strong>Two dashboards, two schemas:</strong> Because the PHP ingestion path and the Flask dashboard were built somewhat independently, they ended up pointed at different table shapes (<code>dht11</code> vs. <code>sensor_data</code>). Reconciling this after the fact — rather than redesigning one schema mid-build — meant explicitly deciding which table was the sensor system-of-record and which was a presentation-only read model, a distinction that isn't obvious until you have two consumers disagreeing about where the "real" data lives.</li>
-        <li><strong>Confidence scoring that means something to a non-technical user:</strong> An early version of the recommender just returned the plain k-NN vote count, which doesn't mean anything to a farmer deciding whether to trust a suggestion. Recomputing a 0–100% confidence score from the fraction of matching, in-range features per neighbor gave the output a number that maps onto an intuitive "how sure is this?" question instead of an opaque vote tally.</li>
-        <li><strong>Debugging a headless ESP32 over Wi-Fi:</strong> With no display on the sensor node, diagnosing connection drops meant relying entirely on serial logs and the payload/HTTP-code print statements in the firmware loop. Keeping those diagnostic prints in the shipped firmware (rather than stripping them for a "clean" build) turned out to be the single most useful debugging tool during integration testing with a live Wi-Fi network.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Key Code / Hardware Components</h2>
-      <p>The weighting step in the recommender is the piece that does the most work for the least code — it's what separates this from a stock k-NN classifier:</p>
-      <pre><code>valid_distances = [dist_dict[f] for f in valid_features]
+<div class="content-topbar">
+<a class="content-brand" href="../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="content-topbar-actions">
+<a class="content-back" href="./index.html"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+<button class="content-theme-toggle" id="themeToggleContent"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<article class="article">
+<div class="article-eyebrow">Case Study — IoT &amp; Applied Machine Learning</div>
+<h1>SmartFarming: An End-to-End Pipeline from Sensor to Dashboard to Recommendation</h1>
+<p class="article-dek">An ESP32 sensor node, a PHP/MySQL ingestion layer, a Flask-served rooftop dashboard, and a weighted k-NN crop recommender — four separately built pieces that had to agree on one thing: what a farmer actually needs to see.</p>
+<div class="article-meta">
+<span>Team Iterators — Noskathon</span>
+<span>ESP32 · PHP/MySQL · Flask · scikit-learn</span>
+<span>~8 min read</span>
+</div>
+<div class="article-tags">
+<span class="tag">ESP32</span>
+<span class="tag">IoT</span>
+<span class="tag">PHP/MySQL</span>
+<span class="tag">Flask</span>
+<span class="tag">k-NN</span>
+<span class="tag">scikit-learn</span>
+</div>
+<figure class="article-hero-img">
+<img alt="Team Iterators' SmartFarming demo table at the Noskathon hackathon, showing the live dashboard, the weather-forecast panel, and the potted soil rig wired to the ESP32 sensor node" loading="lazy" src="../Project_Assets/smartfarmThumbnail.jpeg"/>
+</figure>
+<p class="article-dek" style="font-size:0.85rem; margin-top:-24px; color:var(--ink-dim);">The actual demo setup at Noskathon: a potted soil sample wired to the DHT11/ESP32 sensor node on the right, with the live dashboard and landing page running on the two laptops.</p>
+<section>
+<h2>Overview</h2>
+<p>SmartFarming set out to answer a deceptively simple question: what does a farmer actually want to look at? Not raw sensor voltages, and not a black-box AI verdict either — something in between. The system ended up as three connected layers built by the team at different points in the hackathon: a DHT11-based ESP32 node that reports temperature and humidity over Wi-Fi, a PHP/MySQL ingestion endpoint and a parallel Flask dashboard that render that data as something readable, and a k-nearest-neighbors crop recommender that turns soil and climate numbers into a ranked, confidence-scored suggestion of what to plant. None of these three pieces started out designed to fit together — they were built to solve separate parts of the same farming problem — which is exactly what made integrating them instructive.</p>
+<p>The demo rig, shown above, was deliberately makeshift: a handful of soil in a plastic bowl standing in for a plot of farmland, with the DHT11 sensor and ESP32 taped together and wired straight into a breadboard rather than housed in any enclosure. Repurposed plastic cups held secondary probes during testing. None of that mattered for what the judges needed to see — the live dashboard on one laptop and the landing page on the other were pulling real numbers off that sensor in real time, which was the actual point of the demo.</p>
+</section>
+<section>
+<h2>System Architecture</h2>
+<h3>1. Sensor Layer — ESP32 + DHT11</h3>
+<p>An ESP32 microcontroller reads temperature and humidity and posts them as a simple URL-encoded HTTP request to a PHP endpoint every loop cycle. The firmware keeps deliberately little logic on-device: it checks its own Wi-Fi connection state and reconnects if dropped, then fires a POST with the two readings as form fields. Almost all of the interesting behavior — validation, storage, and interpretation — was pushed off the microcontroller and onto the server, which kept the embedded code small enough to debug quickly under hackathon time pressure.</p>
+<h3>2. Ingestion Layer — PHP + MySQL</h3>
+<p>The receiving endpoint (<code>testdata.php</code>) is intentionally minimal: it opens a MySQLi connection, reads the posted <code>temperature</code> and <code>humidity</code> fields, and inserts them as a new row in a <code>dht11</code> table. There's no batching and no queue — each ESP32 request is a single synchronous insert — which is a reasonable trade for a single sensor node reporting at a slow, human-relevant cadence, though it's the first thing that would need to change if the system had to support many concurrent sensor nodes.</p>
+<h3>3. Presentation Layer — Flask Dashboard</h3>
+<p>A second, independently-built dashboard reads from a related MySQL table (<code>sensor_data</code>, covering moisture, pH, humidity, and temperature) and renders the most recent reading through a Flask route into a styled HTML template with circular gauges and a live temperature card. This dashboard also embeds a client-side call to the OpenWeatherMap forecast API, so a farmer sees both what their own sensors are reporting right now and what the next five days of weather are likely to bring — with a small rule-based advisory ("expect heavy rain — check drainage," "high average temperature — ensure adequate watering") generated from thresholds on rainfall, temperature, and wind speed in the forecast data.</p>
+<h3>4. Recommendation Layer — Weighted k-NN Crop Advisor</h3>
+<p>Separately from the live sensor path, a scikit-learn <code>NearestNeighbors</code> model trained on the standard Kaggle Crop Recommendation dataset (N, P, K, temperature, humidity, pH, rainfall → crop label) takes either manually entered or sensor-derived values and returns a ranked list of suitable crops. Rather than a plain majority vote among the nearest neighbors, each neighbor's vote is weighted by an inverse-distance score computed only over the input features that fall within a sane range for the dataset — so a slightly out-of-range pH reading doesn't get to dominate the vote the way it would in an unweighted scheme.</p>
+<div class="stat-row">
+<div class="stat-box"><span class="num">4</span><span class="label">architectural layers (sensor, ingestion, dashboard, ML)</span></div>
+<div class="stat-box"><span class="num">10</span><span class="label">neighbors considered per crop prediction</span></div>
+<div class="stat-box"><span class="num">7</span><span class="label">input features (N, P, K, temp, humidity, pH, rainfall)</span></div>
+</div>
+</section>
+<section>
+<h2>Technical Challenges Overcome</h2>
+<ul>
+<li><strong>Treating "out of range" as a first-class input, not an error:</strong> Early testing showed that a single wildly-off sensor reading (a miscalibrated pH probe, for instance) could dominate a naive nearest-neighbor vote and produce a nonsensical crop suggestion. The fix was to compute a per-feature valid range from the training data itself and simply exclude out-of-range features from the confidence and distance calculations, rather than either rejecting the whole request or letting a bad reading silently poison the result.</li>
+<li><strong>Two dashboards, two schemas:</strong> Because the PHP ingestion path and the Flask dashboard were built somewhat independently, they ended up pointed at different table shapes (<code>dht11</code> vs. <code>sensor_data</code>). Reconciling this after the fact — rather than redesigning one schema mid-build — meant explicitly deciding which table was the sensor system-of-record and which was a presentation-only read model, a distinction that isn't obvious until you have two consumers disagreeing about where the "real" data lives.</li>
+<li><strong>Confidence scoring that means something to a non-technical user:</strong> An early version of the recommender just returned the plain k-NN vote count, which doesn't mean anything to a farmer deciding whether to trust a suggestion. Recomputing a 0–100% confidence score from the fraction of matching, in-range features per neighbor gave the output a number that maps onto an intuitive "how sure is this?" question instead of an opaque vote tally.</li>
+<li><strong>Debugging a headless ESP32 over Wi-Fi:</strong> With no display on the sensor node, diagnosing connection drops meant relying entirely on serial logs and the payload/HTTP-code print statements in the firmware loop. Keeping those diagnostic prints in the shipped firmware (rather than stripping them for a "clean" build) turned out to be the single most useful debugging tool during integration testing with a live Wi-Fi network.</li>
+</ul>
+</section>
+<section>
+<h2>Key Code / Hardware Components</h2>
+<p>The weighting step in the recommender is the piece that does the most work for the least code — it's what separates this from a stock k-NN classifier:</p>
+<pre><code>valid_distances = [dist_dict[f] for f in valid_features]
 avg_valid_distance = np.mean(valid_distances) if valid_distances else float('inf')
 weight = 1 / (avg_valid_distance + 1e-6)
 
 # later: confidence from the fraction of closely-matching, valid features
-matching_features = sum(1 for f in valid_features if dist_dict[f] < 0.2)
+matching_features = sum(1 for f in valid_features if dist_dict[f] &lt; 0.2)
 confidence = (matching_features / len(valid_features)) * 100</code></pre>
-      <p>On the hardware side, the sensor node is a single ESP32 DevKit paired with a DHT11 temperature/humidity sensor, posting over the built-in Wi-Fi radio directly to a LAN-hosted PHP endpoint — no gateway device or edge compute needed for a single-node deployment. The dashboard stack is plain Flask with server-rendered Jinja templates rather than a JS framework, which was a deliberate choice to keep the presentation layer simple enough for the whole team to edit under time pressure.</p>
-    </section>
-
-    <!-- Ad slot -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle" style="display:block; width:100%;" data-ad-client="ca-pub-7467274697628656" data-ad-slot="0000000013" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    </div>
-
-    <section>
-      <h2>Key Takeaways</h2>
-      <p>The most durable lesson from SmartFarming wasn't about IoT or machine learning specifically — it was that a system built as three or four independently-developed pieces needs an explicit integration pass, not an implicit one. Each layer (firmware, ingestion, dashboard, model) worked correctly in isolation well before the team noticed the schema mismatch between the PHP and Flask paths, precisely because nothing forced the pieces to talk to each other until integration testing. It also reinforced a specific idea about applying ML to noisy real-world sensor data: a model's confidence output is only as trustworthy as its handling of out-of-range inputs, and deciding what to do with a bad reading is a design decision, not a detail to patch in later.</p>
-    </section>
-
-    <div class="article-nav">
-      <a href="./manoratha.html"><i class="fas fa-arrow-left"></i> Previous: Manoratha</a>
-      <a href="./index.html">Back to All Case Studies <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </article>
-
-  <script>
+<p>On the hardware side, the sensor node is a single ESP32 DevKit paired with a DHT11 temperature/humidity sensor, posting over the built-in Wi-Fi radio directly to a LAN-hosted PHP endpoint — no gateway device or edge compute needed for a single-node deployment. The dashboard stack is plain Flask with server-rendered Jinja templates rather than a JS framework, which was a deliberate choice to keep the presentation layer simple enough for the whole team to edit under time pressure.</p>
+</section>
+<!-- Ad slot -->
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-7467274697628656" data-ad-format="auto" data-ad-slot="0000000013" data-full-width-responsive="true" style="display:block; width:100%;"></ins>
+</div>
+<section>
+<h2>Key Takeaways</h2>
+<p>The most durable lesson from SmartFarming wasn't about IoT or machine learning specifically — it was that a system built as three or four independently-developed pieces needs an explicit integration pass, not an implicit one. Each layer (firmware, ingestion, dashboard, model) worked correctly in isolation well before the team noticed the schema mismatch between the PHP and Flask paths, precisely because nothing forced the pieces to talk to each other until integration testing. It also reinforced a specific idea about applying ML to noisy real-world sensor data: a model's confidence output is only as trustworthy as its handling of out-of-range inputs, and deciding what to do with a bad reading is a design decision, not a detail to patch in later.</p>
+</section>
+<div class="article-nav">
+<a href="./manoratha.html"><i class="fas fa-arrow-left"></i> Previous: Manoratha</a>
+<a href="./index.html">Back to All Case Studies <i class="fas fa-arrow-right"></i></a>
+</div>
+</article>
+<script>
     (window.adsbygoogle = window.adsbygoogle || []).push({});
   </script>
-  <script>
+<script>
     const toggle = document.getElementById("themeToggleContent");
     const icon = toggle.querySelector("i");
     function applyTheme(dark) {

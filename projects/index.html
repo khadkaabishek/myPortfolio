@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projects by Abishek Khadka — AI, IoT, robotics and full-stack builds." />
-  <title>Projects | Abishek Khadka</title>
-  <link rel="icon" type="image/png" href="../Assets/letter-a.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./projects.css" />
-  <!-- NOTE: intentionally no ad script here — this is the main showcase page and stays ad-free. -->
-<link rel="stylesheet" href="../site-enhancements.css" />
-</head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Projects by Abishek Khadka — AI, IoT, robotics and full-stack builds." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/projects/" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="website" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="Projects | Abishek Khadka" property="og:title"/><meta content="Projects by Abishek Khadka — AI, IoT, robotics and full-stack builds." property="og:description"/><meta content="https://www.abishek-khadka.com.np/projects/" property="og:url"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Projects | Abishek Khadka" name="twitter:title"/><meta content="Projects by Abishek Khadka — AI, IoT, robotics and full-stack builds." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" name="twitter:image"/>
+<title>Projects | Abishek Khadka</title>
+<link href="../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="./projects.css" rel="stylesheet"/>
+<!-- NOTE: intentionally no ad script here — this is the main showcase page and stays ad-free. -->
+<link href="../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Projects",
+  "url": "https://www.abishek-khadka.com.np/projects/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.abishek-khadka.com.np/"
+  }
+}</script></head>
 <body>
-  <div class="projects-topbar">
-    <a href="../index.html" class="projects-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="topbar-actions">
-      <a href="../index.html#contact" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
-      <button id="themeToggleProjects" class="theme-toggle-projects"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <div class="showcase-hero">
-    <h1>Projects</h1>
-    <p>A collection of things I've built — spanning computer vision, embedded robotics, full-stack platforms, and web development. Click any project for the full write-up, GitHub link, and a quick demo.</p>
-  </div>
-
-  <div id="showcaseGrid" class="showcase-grid"></div>
-
-  <script src="./projects-data.js"></script>
-  <script>
+<div class="projects-topbar">
+<a class="projects-brand" href="../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="topbar-actions">
+<a class="back-home" href="../index.html#contact"><i class="fas fa-arrow-left"></i> Back to Home</a>
+<button class="theme-toggle-projects" id="themeToggleProjects"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<div class="showcase-hero">
+<h1>Projects</h1>
+<p>A collection of things I've built — spanning computer vision, embedded robotics, full-stack platforms, and web development. Click any project for the full write-up, GitHub link, and a quick demo.</p>
+</div>
+<div class="showcase-grid" id="showcaseGrid"></div>
+<script src="./projects-data.js"></script>
+<script>
     const grid = document.getElementById("showcaseGrid");
     grid.innerHTML = PROJECTS.map(p => `
       <a class="showcase-card" href="./project.html?p=${encodeURIComponent(p.id)}">

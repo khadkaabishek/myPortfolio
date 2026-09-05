@@ -1,94 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Contact | Abishek Khadka</title>
-<meta name="description" content="Get in touch with Abishek Khadka — Computer Engineering student at NCIT, for collaboration, freelance work, or questions about any project." />
-<link rel="icon" type="image/png" href="../Assets/letter-a.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="../case-studies/content.css" />
+<meta content="Get in touch with Abishek Khadka — Computer Engineering student at NCIT, for collaboration, freelance work, or questions about any project." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/contact/" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="website" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="Contact | Abishek Khadka" property="og:title"/><meta content="Get in touch with Abishek Khadka — Computer Engineering student at NCIT, for collaboration, freelance work, or questions about any project." property="og:description"/><meta content="https://www.abishek-khadka.com.np/contact/" property="og:url"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Contact | Abishek Khadka" name="twitter:title"/><meta content="Get in touch with Abishek Khadka — Computer Engineering student at NCIT, for collaboration, freelance work, or questions about any project." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" name="twitter:image"/>
+<link href="../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="../case-studies/content.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<link rel="stylesheet" href="../site-enhancements.css" />
-</head>
+<link href="../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Abishek Khadka",
+  "url": "https://www.abishek-khadka.com.np/contact/"
+}</script></head>
 <body class="content-page">
-  <div class="content-topbar">
-    <a href="../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="content-topbar-actions">
-      <a href="../index.html" class="content-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
-      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <div class="contact-page-grid">
-    <div class="contact-copy">
-      <h1>Get in Touch</h1>
-      <p>Whether you have a question about one of the projects on this site, want to collaborate on something in embedded systems, computer vision, or full-stack development, or you're a fellow student at NCIT looking to compare notes — reach out. I read every message and typically reply within 2–3 business days.</p>
-      <p>Use the form to send a message directly, or reach me through any of the channels below. For bug reports or feature requests on a specific open-source project, opening an issue on the relevant GitHub repository (linked from that project's case study) is usually the fastest way to get a response.</p>
-
-      <div class="contact-channel">
-        <i class="fas fa-envelope"></i>
-        <div>
-          <div class="label">Email</div>
-          <a href="mailto:abishekkhadka36@gmail.com">abishekkhadka36@gmail.com</a>
-        </div>
-      </div>
-      <div class="contact-channel">
-        <i class="fab fa-github"></i>
-        <div>
-          <div class="label">GitHub</div>
-          <a href="https://github.com/khadkaabishek" target="_blank" rel="noopener noreferrer">github.com/khadkaabishek</a>
-        </div>
-      </div>
-      <div class="contact-channel">
-        <i class="fas fa-map-marker-alt"></i>
-        <div>
-          <div class="label">Based in</div>
-          <span class="value">Kathmandu, Nepal</span>
-        </div>
-      </div>
-      <div class="contact-channel">
-        <i class="fas fa-graduation-cap"></i>
-        <div>
-          <div class="label">Currently</div>
-          <span class="value">Computer Engineering student, NCIT</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-form-box">
-      <form id="standaloneContactForm">
-        <div class="form-group">
-          <label for="c-name">Name</label>
-          <input type="text" id="c-name" name="name" placeholder="Your full name" required />
-        </div>
-        <div class="form-group">
-          <label for="c-email">Email</label>
-          <input type="email" id="c-email" name="email" placeholder="you@example.com" required />
-        </div>
-        <div class="form-group">
-          <label for="c-subject">Subject</label>
-          <select id="c-subject" name="subject">
-            <option value="General inquiry">General inquiry</option>
-            <option value="Project collaboration">Project collaboration</option>
-            <option value="Freelance / job opportunity">Freelance / job opportunity</option>
-            <option value="Bug report">Bug report</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="c-message">Message</label>
-          <textarea id="c-message" name="message" placeholder="What would you like to talk about?" required></textarea>
-        </div>
-        <button type="submit" class="contact-submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
-        <div id="c-form-status" style="margin-top: 14px; padding: 10px; border-radius: 6px; display: none; font-size: 0.88rem;"></div>
-        <p class="contact-note">Submitting this form sends your message via EmailJS directly to my inbox. No account is created and your details are not stored anywhere beyond what's needed to reply — see the <a href="../legal/privacy-policy.html">Privacy Policy</a> for details.</p>
-      </form>
-    </div>
-  </div>
-
-  <script>
+<div class="content-topbar">
+<a class="content-brand" href="../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="content-topbar-actions">
+<a class="content-back" href="../index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+<button class="content-theme-toggle" id="themeToggleContent"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<div class="contact-page-grid">
+<div class="contact-copy">
+<h1>Get in Touch</h1>
+<p>Whether you have a question about one of the projects on this site, want to collaborate on something in embedded systems, computer vision, or full-stack development, or you're a fellow student at NCIT looking to compare notes — reach out. I read every message and typically reply within 2–3 business days.</p>
+<p>Use the form to send a message directly, or reach me through any of the channels below. For bug reports or feature requests on a specific open-source project, opening an issue on the relevant GitHub repository (linked from that project's case study) is usually the fastest way to get a response.</p>
+<div class="contact-channel">
+<i class="fas fa-envelope"></i>
+<div>
+<div class="label">Email</div>
+<a href="mailto:abishekkhadka36@gmail.com">abishekkhadka36@gmail.com</a>
+</div>
+</div>
+<div class="contact-channel">
+<i class="fab fa-github"></i>
+<div>
+<div class="label">GitHub</div>
+<a href="https://github.com/khadkaabishek" rel="noopener noreferrer" target="_blank">github.com/khadkaabishek</a>
+</div>
+</div>
+<div class="contact-channel">
+<i class="fas fa-map-marker-alt"></i>
+<div>
+<div class="label">Based in</div>
+<span class="value">Kathmandu, Nepal</span>
+</div>
+</div>
+<div class="contact-channel">
+<i class="fas fa-graduation-cap"></i>
+<div>
+<div class="label">Currently</div>
+<span class="value">Computer Engineering student, NCIT</span>
+</div>
+</div>
+</div>
+<div class="contact-form-box">
+<form id="standaloneContactForm">
+<div class="form-group">
+<label for="c-name">Name</label>
+<input id="c-name" name="name" placeholder="Your full name" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="c-email">Email</label>
+<input id="c-email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="c-subject">Subject</label>
+<select id="c-subject" name="subject">
+<option value="General inquiry">General inquiry</option>
+<option value="Project collaboration">Project collaboration</option>
+<option value="Freelance / job opportunity">Freelance / job opportunity</option>
+<option value="Bug report">Bug report</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<div class="form-group">
+<label for="c-message">Message</label>
+<textarea id="c-message" name="message" placeholder="What would you like to talk about?" required=""></textarea>
+</div>
+<button class="contact-submit-btn" type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+<div id="c-form-status" style="margin-top: 14px; padding: 10px; border-radius: 6px; display: none; font-size: 0.88rem;"></div>
+<p class="contact-note">Submitting this form sends your message via EmailJS directly to my inbox. No account is created and your details are not stored anywhere beyond what's needed to reply — see the <a href="../legal/privacy-policy.html">Privacy Policy</a> for details.</p>
+</form>
+</div>
+</div>
+<script>
     (function () {
       if (typeof emailjs !== "undefined") {
         emailjs.init("q_5jUEeH6Y2MU51hP");

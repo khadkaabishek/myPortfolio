@@ -3,6 +3,61 @@
    Loaded on every page. Respects prefers-reduced-motion and touch devices.
    ========================================================================== */
 
+/* ==========================================================================
+   Global design polish
+   Loaded last on every page, so these refine (never fight) each page's own
+   styles: a fluid type scale for headings, tighter heading rhythm, and
+   visible keyboard-focus states site-wide. Additive only — nothing here
+   changes layout, colors, or existing hover behavior.
+   ========================================================================== */
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Fluid heading scale: scales smoothly with viewport instead of jumping at
+   breakpoints, and keeps a consistent rhythm across every page (home,
+   case studies, project detail, tools) without hand-tuning each stylesheet. */
+h1 { line-height: 1.15; letter-spacing: -0.01em; }
+h2 { line-height: 1.2; letter-spacing: -0.005em; }
+h1.hero-name,
+.upper-section h1 {
+  font-size: clamp(1.35rem, 1.1rem + 1.1vw, 2rem);
+}
+.info-section h2,
+.detail-title {
+  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.1rem);
+}
+/* Bare <h1> page headers on case-study, tool, and content pages */
+.content-page h1,
+.tools-page h1 {
+  font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2rem);
+}
+
+/* Slightly longer measure and looser leading on long-form body copy reads
+   as more considered, less "default browser" — applied only to prose. */
+.info-section > p,
+.detail-section p,
+.content-page p {
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+/* Visible, on-brand keyboard focus everywhere. Mouse users never see this
+   (:focus-visible), so it costs nothing visually while fixing a real
+   accessibility gap. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--cyan, #00E5FF);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* ---------- Page transition fade ---------- */
 /* Body starts hidden and fades in once the page-transitions script confirms
    the document is ready; this also fades out just before navigating away. */

@@ -1,63 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Base64 / URL Encoder-Decoder | Abishek Khadka</title>
-<meta name="description" content="Encode or decode text as Base64 or a URL-safe string, in both directions, instantly in your browser." />
-<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="../tools.css" />
-<link rel="stylesheet" href="../../site-enhancements.css" />
-</head>
+<meta content="Encode or decode text as Base64 or a URL-safe string, in both directions, instantly in your browser." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/tools/base64-url/" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="website" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="Base64 / URL Encoder-Decoder | Abishek Khadka" property="og:title"/><meta content="Encode or decode text as Base64 or a URL-safe string, in both directions, instantly in your browser." property="og:description"/><meta content="https://www.abishek-khadka.com.np/tools/base64-url/" property="og:url"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Base64 / URL Encoder-Decoder | Abishek Khadka" name="twitter:title"/><meta content="Encode or decode text as Base64 or a URL-safe string, in both directions, instantly in your browser." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" name="twitter:image"/>
+<link href="../../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="../tools.css" rel="stylesheet"/>
+<link href="../../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64 / URL Encoder-Decoder",
+  "url": "https://www.abishek-khadka.com.np/tools/base64-url/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.abishek-khadka.com.np/"
+  }
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.abishek-khadka.com.np/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Useful Tools",
+      "item": "https://www.abishek-khadka.com.np/Useful_tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Base64 / URL Encoder-Decoder",
+      "item": "https://www.abishek-khadka.com.np/tools/base64-url/"
+    }
+  ]
+}</script></head>
 <body class="tools-page">
-  <div class="content-topbar">
-    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="content-topbar-actions">
-      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
-      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <div class="tool-shell">
-    <div class="tool-eyebrow">Developer Tools</div>
-    <h1>Base64 / URL Encoder-Decoder</h1>
-    <p class="tool-dek">Encode or decode text as Base64, or apply URL encoding/decoding — both directions, both formats, instantly.</p>
-
-    <div class="privacy-note"><i class="fas fa-lock"></i> Your text is processed locally in your browser and never sent anywhere.</div>
-
-    <div class="tool-panel">
-      <div class="form-row">
-        <label>Mode</label>
-        <select id="mode">
-          <option value="base64">Base64</option>
-          <option value="url">URL Encoding</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <label for="inputText">Input</label>
-        <textarea id="inputText" placeholder="Type or paste text here…"></textarea>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn" id="encodeBtn"><i class="fas fa-lock"></i> Encode</button>
-        <button class="btn secondary" id="decodeBtn"><i class="fas fa-unlock"></i> Decode</button>
-        <button class="btn secondary" id="copyBtn"><i class="fas fa-copy"></i> Copy Output</button>
-        <button class="btn secondary" id="swapBtn"><i class="fas fa-exchange-alt"></i> Swap Input/Output</button>
-      </div>
-
-      <p class="note" id="statusMsg"></p>
-
-      <div class="form-row" style="margin-top:14px;">
-        <label for="outputText">Output</label>
-        <textarea id="outputText" readonly placeholder="Result will appear here…"></textarea>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<div class="content-topbar">
+<a class="content-brand" href="../../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="content-topbar-actions">
+<a class="content-back" href="../../Useful_tools.html"><i class="fas fa-arrow-left"></i> All Tools</a>
+<button class="content-theme-toggle" id="themeToggleContent"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<div class="tool-shell">
+<div class="tool-eyebrow">Developer Tools</div>
+<h1>Base64 / URL Encoder-Decoder</h1>
+<p class="tool-dek">Encode or decode text as Base64, or apply URL encoding/decoding — both directions, both formats, instantly.</p>
+<div class="privacy-note"><i class="fas fa-lock"></i> Your text is processed locally in your browser and never sent anywhere.</div>
+<div class="tool-panel">
+<div class="form-row">
+<label>Mode</label>
+<select id="mode">
+<option value="base64">Base64</option>
+<option value="url">URL Encoding</option>
+</select>
+</div>
+<div class="form-row">
+<label for="inputText">Input</label>
+<textarea id="inputText" placeholder="Type or paste text here…"></textarea>
+</div>
+<div class="btn-row">
+<button class="btn" id="encodeBtn"><i class="fas fa-lock"></i> Encode</button>
+<button class="btn secondary" id="decodeBtn"><i class="fas fa-unlock"></i> Decode</button>
+<button class="btn secondary" id="copyBtn"><i class="fas fa-copy"></i> Copy Output</button>
+<button class="btn secondary" id="swapBtn"><i class="fas fa-exchange-alt"></i> Swap Input/Output</button>
+</div>
+<p class="note" id="statusMsg"></p>
+<div class="form-row" style="margin-top:14px;">
+<label for="outputText">Output</label>
+<textarea id="outputText" placeholder="Result will appear here…" readonly=""></textarea>
+</div>
+</div>
+</div>
+<script>
     const mode = document.getElementById('mode');
     const inputText = document.getElementById('inputText');
     const outputText = document.getElementById('outputText');

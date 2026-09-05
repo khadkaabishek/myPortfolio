@@ -1,66 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <script>document.documentElement.classList.add('has-page-transitions');</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>JSON Formatter &amp; Validator | Abishek Khadka</title>
-<meta name="description" content="Pretty-print, minify, and validate JSON with clear error messages. Runs entirely in your browser." />
-<link rel="icon" type="image/png" href="../../Assets/letter-a.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-<link rel="stylesheet" href="../tools.css" />
-<link rel="stylesheet" href="../../site-enhancements.css" />
-</head>
+<meta content="Pretty-print, minify, and validate JSON with clear error messages. Runs entirely in your browser." name="description"/><meta content="index, follow" name="robots"/><link href="https://www.abishek-khadka.com.np/tools/json-formatter/" rel="canonical"/><meta content="#0D1117" name="theme-color"/><meta content="website" property="og:type"/><meta content="Abishek Khadka" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="JSON Formatter &amp; Validator | Abishek Khadka" property="og:title"/><meta content="Pretty-print, minify, and validate JSON with clear error messages. Runs entirely in your browser." property="og:description"/><meta content="https://www.abishek-khadka.com.np/tools/json-formatter/" property="og:url"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="JSON Formatter &amp; Validator | Abishek Khadka" name="twitter:title"/><meta content="Pretty-print, minify, and validate JSON with clear error messages. Runs entirely in your browser." name="twitter:description"/><meta content="https://www.abishek-khadka.com.np/Assets/image.jpg" name="twitter:image"/>
+<link href="../../Assets/letter-a.png" rel="icon" type="image/png"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="../tools.css" rel="stylesheet"/>
+<link href="../../site-enhancements.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON Formatter & Validator",
+  "url": "https://www.abishek-khadka.com.np/tools/json-formatter/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.abishek-khadka.com.np/"
+  }
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.abishek-khadka.com.np/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Useful Tools",
+      "item": "https://www.abishek-khadka.com.np/Useful_tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "JSON Formatter & Validator",
+      "item": "https://www.abishek-khadka.com.np/tools/json-formatter/"
+    }
+  ]
+}</script></head>
 <body class="tools-page">
-  <div class="content-topbar">
-    <a href="../../index.html" class="content-brand"><i class="fas fa-code"></i> Abishek Khadka</a>
-    <div class="content-topbar-actions">
-      <a href="../../Useful_tools.html" class="content-back"><i class="fas fa-arrow-left"></i> All Tools</a>
-      <button id="themeToggleContent" class="content-theme-toggle"><i class="fas fa-sun"></i></button>
-    </div>
-  </div>
-
-  <div class="tool-shell">
-    <div class="tool-eyebrow">Developer Tools</div>
-    <h1>JSON Formatter &amp; Validator</h1>
-    <p class="tool-dek">Paste in JSON to pretty-print it, minify it, or check whether it's valid — with a clear error message pointing at the problem.</p>
-
-    <div class="privacy-note"><i class="fas fa-lock"></i> Your JSON is processed locally in your browser and never sent anywhere.</div>
-
-    <div class="tool-panel">
-      <div class="form-row">
-        <label for="jsonInput">Input JSON</label>
-        <textarea id="jsonInput" style="min-height:220px;" placeholder='{"name": "Abishek", "skills": ["IoT", "Robotics", "Full-Stack"]}'></textarea>
-      </div>
-
-      <div class="form-row-inline">
-        <div class="form-row" style="max-width:160px;">
-          <label for="indentSize">Indent size</label>
-          <select id="indentSize">
-            <option value="2">2 spaces</option>
-            <option value="4">4 spaces</option>
-            <option value="tab">Tab</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn" id="formatBtn"><i class="fas fa-align-left"></i> Pretty-print</button>
-        <button class="btn secondary" id="minifyBtn"><i class="fas fa-compress-alt"></i> Minify</button>
-        <button class="btn secondary" id="validateBtn"><i class="fas fa-check-circle"></i> Validate</button>
-        <button class="btn secondary" id="copyBtn"><i class="fas fa-copy"></i> Copy Output</button>
-      </div>
-
-      <p class="note" id="statusMsg"></p>
-
-      <div class="form-row" style="margin-top:14px;">
-        <label for="jsonOutput">Output</label>
-        <textarea id="jsonOutput" style="min-height:220px;" readonly placeholder="Result will appear here…"></textarea>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<div class="content-topbar">
+<a class="content-brand" href="../../index.html"><i class="fas fa-code"></i> Abishek Khadka</a>
+<div class="content-topbar-actions">
+<a class="content-back" href="../../Useful_tools.html"><i class="fas fa-arrow-left"></i> All Tools</a>
+<button class="content-theme-toggle" id="themeToggleContent"><i class="fas fa-sun"></i></button>
+</div>
+</div>
+<div class="tool-shell">
+<div class="tool-eyebrow">Developer Tools</div>
+<h1>JSON Formatter &amp; Validator</h1>
+<p class="tool-dek">Paste in JSON to pretty-print it, minify it, or check whether it's valid — with a clear error message pointing at the problem.</p>
+<div class="privacy-note"><i class="fas fa-lock"></i> Your JSON is processed locally in your browser and never sent anywhere.</div>
+<div class="tool-panel">
+<div class="form-row">
+<label for="jsonInput">Input JSON</label>
+<textarea id="jsonInput" placeholder='{"name": "Abishek", "skills": ["IoT", "Robotics", "Full-Stack"]}' style="min-height:220px;"></textarea>
+</div>
+<div class="form-row-inline">
+<div class="form-row" style="max-width:160px;">
+<label for="indentSize">Indent size</label>
+<select id="indentSize">
+<option value="2">2 spaces</option>
+<option value="4">4 spaces</option>
+<option value="tab">Tab</option>
+</select>
+</div>
+</div>
+<div class="btn-row">
+<button class="btn" id="formatBtn"><i class="fas fa-align-left"></i> Pretty-print</button>
+<button class="btn secondary" id="minifyBtn"><i class="fas fa-compress-alt"></i> Minify</button>
+<button class="btn secondary" id="validateBtn"><i class="fas fa-check-circle"></i> Validate</button>
+<button class="btn secondary" id="copyBtn"><i class="fas fa-copy"></i> Copy Output</button>
+</div>
+<p class="note" id="statusMsg"></p>
+<div class="form-row" style="margin-top:14px;">
+<label for="jsonOutput">Output</label>
+<textarea id="jsonOutput" placeholder="Result will appear here…" readonly="" style="min-height:220px;"></textarea>
+</div>
+</div>
+</div>
+<script>
     const jsonInput = document.getElementById('jsonInput');
     const jsonOutput = document.getElementById('jsonOutput');
     const indentSize = document.getElementById('indentSize');
